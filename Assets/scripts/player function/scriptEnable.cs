@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class scriptEnable : MonoBehaviour
 {
-    // 获得物件
     public GameObject player;
     public GameObject SystemControl;
 
-    //立即停止移动
-    
-
-    // 获得SystemControl的访问权限
     SystemControl systemControl;
 
-    //获得脱战状态的移动脚本
     ClickToMove noBatMove;
 
-    //获得战斗状态的移动脚本
     ClickToMoveBattle batMove;
 
     private void Start()
