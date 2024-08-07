@@ -10,48 +10,39 @@ public class ClickToMoveBattle : MonoBehaviour
     private Vector3 lastPosition; //上一帧位置
     public float totalDistance; //一共移动的距离
     public float percentage; //移动百分比
+    public float MovePower;
 
-    
-    
     void Start()
     {
         initialize();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        battleMove();        
-    }
-
-
-    void battleMove()
+    public void battleMove()
     {
         Character player = GetComponent<Character>();
 
-        float MovePower = player.movePower;
-        //当前位置
+        MovePower = player.movePower;
+
         Vector3 currentPosition = player.transform.position;
-        //计算当前帧与上一帧的距离
+
         float distanceThisFrame = Vector3.Distance(lastPosition, currentPosition);
 
-        //总共移动的距离
         totalDistance += distanceThisFrame;
         percentage = 1 - (totalDistance / player.movePower);
 
-        // 更新上一帧的位置为当前帧的位置
+
         lastPosition = currentPosition;
 
         if (MovePower > totalDistance)
         {
-            if (Input.GetMouseButton(0))   // 检查是否点击了鼠标左键
+            if (Input.GetMouseButton(0))   
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))   // 发射射线检测碰撞
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))   
                 {
-                    agent.SetDestination(hit.point);   // 设置NavMesh代理的目标位置为射线碰撞点
+                    agent.SetDestination(hit.point);  
                 }
             }
         }

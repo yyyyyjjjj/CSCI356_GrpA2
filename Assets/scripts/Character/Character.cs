@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    // 伤害
+    // damage
     public int PlayerDamage;
-    //最大生命值
+    //max hp
     public int maxHP;
-    //目前生命值
+    //current hp
     public float currentHP;
-    //最大移动力
+    //move power
     public float movePower;
-    //AI 生命值
+    //AI HP
     public int AiHP;
-    //ai伤害
+    //ai damage
     public int AiDamage;
 
     private void Update()
     {
-        Debug.Log("目前生命值: " + currentHP);
-        Debug.Log("移动力: " + movePower);
+        Debug.Log("current Hp: " + currentHP);
     }
 }

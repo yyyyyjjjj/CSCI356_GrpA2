@@ -3,32 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AItest : MonoBehaviour
+public class AiNavigation : MonoBehaviour
 {
     SystemControl SC;
     public GameObject Sc;
 
     NavMeshAgent agent;
 
-    public Transform[] target;  // 存放四个目标点的Transform数组
-    private int currentTargetIndex = 0;  // 当前目标点的索引
+    public Transform[] target; 
+    private int currentTargetIndex = 0;  
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         MoveToNextTarget();
+        SC = Sc.GetComponent<SystemControl>();
     }
 
-    // Update is called once per frame
     void Update()
     {        
-        // 如果到达当前目标点，移动到下一个目标点
+        if (SC.state == BattleState.NORMAL)
+        {
+            enabled = true;
+            movement();
+        }
+        if (SC.state != BattleState.NORMAL)
+        {
+            enabled = false;
+        }
+        
+    }
+    public void movement()
+    {
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
             MoveToNextTarget();
         }
         transform.rotation = Quaternion.Euler(0, 0, 0);
-
-        testPlayer();
     }
     void MoveToNextTarget()
     {
@@ -38,14 +48,5 @@ public class AItest : MonoBehaviour
 
         // 更新索引，循环到起始点
         currentTargetIndex = (currentTargetIndex + 1) % target.Length;
-    }
-
-    void testPlayer()
-    {
-        SC = Sc.GetComponent<SystemControl>();
-        if (SC.state == BattleState.BATTLESTART)
-        {
-            agent.isStopped = true;
-        }
-    }
+    }   
 }
