@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RaycastDistance: 15
-  agent: {fileID: 399567762}
+  AiAgent: {fileID: 399567762}
   PlayerPosition: {fileID: 1547035613}
   sc: {fileID: 979498097}
 --- !u!114 &399567761
@@ -1463,7 +1463,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 399567747}
   player: {fileID: 1547035611}
+  HpUi: {fileID: 484965177}
+  moveUi: {fileID: 1252630688}
   EndRdButton: {fileID: 1170151762}
+  HP: {fileID: 484965179}
+  MovePower: {fileID: 1252630690}
+  PlayerAgent: {fileID: 1547035616}
   state: 0
 --- !u!1 &1018959884
 GameObject:
@@ -2486,6 +2491,7 @@ MonoBehaviour:
   totalDistance: 0
   percentage: 0
   MovePower: 0
+  SC: {fileID: 979498097}
 --- !u!114 &1547035622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,7 +2528,7 @@ MonoBehaviour:
   currentHP: 30
   movePower: 10
   AiHP: 10
-  AiDamage: 1
+  AiDamage: 2
 --- !u!1 &1613675807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1613675808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2557,7 +2563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 183.3, y: -159.1}
+  m_AnchoredPosition: {x: 215.4, y: -179.23}
   m_SizeDelta: {x: 130, y: 20.32956}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1743799282
@@ -3579,8 +3585,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31724933, y: 0.7284732, z: -0.42192954, w: 0.43664086}
-  m_LocalPosition: {x: 0.00000041882933, y: 0.0000076293945, z: 0}
+  m_LocalRotation: {x: 0.3172494, y: 0.7284731, z: -0.42192945, w: 0.4366408}
+  m_LocalPosition: {x: 0.0000007329513, y: 0.000011444092, z: 0.0000001054622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

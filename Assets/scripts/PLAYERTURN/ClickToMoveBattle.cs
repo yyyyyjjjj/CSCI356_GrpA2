@@ -11,51 +11,67 @@ public class ClickToMoveBattle : MonoBehaviour
     public float totalDistance; //一共移动的距离
     public float percentage; //移动百分比
     public float MovePower;
+    public GameObject SC;
+    SystemControl sc;
 
+    //run one time
+    private bool hasRun = false;
     void Start()
     {
-        initialize();
+        lastPosition = transform.position;
+        totalDistance = 0;
+        sc = SC.GetComponent<SystemControl>();
     }
 
     public void battleMove()
     {
-        Character player = GetComponent<Character>();
+        if (sc.state == BattleState.PLAYERTURN)
+        {            
+            
+            //reference
+            Character player = GetComponent<Character>();
+            MovePower = player.movePower;
 
-        MovePower = player.movePower;
+            Vector3 currentPosition = player.transform.position;
+            
 
-        Vector3 currentPosition = player.transform.position;
+            
 
-        float distanceThisFrame = Vector3.Distance(lastPosition, currentPosition);
-
-        totalDistance += distanceThisFrame;
-        percentage = 1 - (totalDistance / player.movePower);
-
-
-        lastPosition = currentPosition;
-
-        if (MovePower > totalDistance)
-        {
-            if (Input.GetMouseButton(0))   
+            if (hasRun == false)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+                //initialize percentage and totalDistance
+                percentage = 1;
+                totalDistance = 0;
+                hasRun = true;
+            }else
+            {
+                float distanceThisFrame = Vector3.Distance(lastPosition, currentPosition);
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))   
+                totalDistance += distanceThisFrame;
+
+                percentage = 1 - (totalDistance / player.movePower);
+            }
+
+            lastPosition = currentPosition;
+
+
+            if (MovePower > totalDistance)
+            {
+                if (Input.GetMouseButton(0))
                 {
-                    agent.SetDestination(hit.point);  
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+                    {
+                        agent.SetDestination(hit.point);
+                    }
                 }
             }
-        }
-        else
-        {
-            agent.SetDestination(currentPosition);
-        }
-
-    }
-
-    void initialize()
-    {
-        lastPosition = transform.position;
-        totalDistance = 0f;
+            else
+            {
+                agent.SetDestination(currentPosition);
+            }
+        }        
     }
 }

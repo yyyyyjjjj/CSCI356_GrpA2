@@ -7,7 +7,8 @@ public class AiTestPlayer : MonoBehaviour
 {
     public float RaycastDistance = 100f; // ray line 
 
-    public NavMeshAgent agent;
+    public NavMeshAgent AiAgent;
+
     public Transform PlayerPosition; // player position
 
     SystemControl SC;
@@ -31,7 +32,7 @@ public class AiTestPlayer : MonoBehaviour
         }
         if (SC.state == BattleState.BATTLESTART)
         {
-            agent.SetDestination(transform.position);
+            AiAgent.SetDestination(transform.position);
         }
     }
     void AItest()
