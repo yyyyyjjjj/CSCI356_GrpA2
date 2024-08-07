@@ -26,7 +26,6 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: bc2028dae36ca4801b09405dbbc6fada, type: 2}
   m_SkyboxMaterial: {fileID: 2100000, guid: 616bf7e2270624430bc6367b72e861db, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -39,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29684296, g: 0.6337676, b: 0.9937157, a: 1}
   m_IndirectSpecularColor: {r: 0.32107174, g: 0.21133253, b: 0.40438062, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -311,27 +309,21 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1547035619}
       addedObject: {fileID: 1547035616}
     - targetCorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1547035618}
       addedObject: {fileID: 1547035615}
     - targetCorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1547035617}
       addedObject: {fileID: 1547035614}
     - targetCorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1547035616}
       addedObject: {fileID: 1547035622}
     - targetCorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1547035615}
       addedObject: {fileID: 1547035621}
     - targetCorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1547035614}
       addedObject: {fileID: 1547035623}
   m_SourcePrefab: {fileID: 100100000, guid: 45288819fde2143449a96207b14db0bb, type: 3}
 --- !u!1 &29900612
@@ -420,8 +412,6 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29900612}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22658888, y: 0.76963, z: -0.3764135, w: 0.46329266}
-  m_LocalPosition: {x: 6.8060513, y: 18.640541, z: -3.0649781}
   m_LocalRotation: {x: 0.31724933, y: 0.7284732, z: -0.42192954, w: 0.43664086}
   m_LocalPosition: {x: 7.913566, y: 19.14048, z: -3.5245552}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -608,7 +598,6 @@ Transform:
   m_GameObject: {fileID: 296717386}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.8, y: -0.37946105, z: -9.877466}
   m_LocalPosition: {x: -6.71, y: -0.37946105, z: -13.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -686,8 +675,6 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321200460}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22658888, y: 0.76963, z: -0.3764135, w: 0.4632927}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalRotation: {x: 0.31724933, y: 0.7284732, z: -0.42192954, w: 0.43664086}
   m_LocalPosition: {x: 0.00000020941467, y: 0.0000038146973, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
