@@ -21,10 +21,15 @@ public class SystemControl : MonoBehaviour
     public Image MovePower;
     //agent
     public NavMeshAgent PlayerAgent;
+    //UI
+
+    public UIcontroller canvasController;
+
+    public LayerMask groundLayer;   // layer ground
+    public NavMeshAgent agent;      // NavMesh agent
 
     // reference
     ClickToMoveBattle CTB;
-    ClickToMove CTM;
     public BattleState state;
 
     // run one time
@@ -42,7 +47,6 @@ public class SystemControl : MonoBehaviour
         // Hp update in all state
         HpController();
         // using these reference
-        CTM = player.GetComponent<ClickToMove>();
         CTB = player.GetComponent<ClickToMoveBattle>();
 
         MovePower = moveUi.GetComponent<Image>();
@@ -53,7 +57,7 @@ public class SystemControl : MonoBehaviour
         if (state == BattleState.NORMAL)
         {
             // player basic movement in the normal state
-            CTM.normalMove();
+            normalMove();
 
             //initialize percentage
             CTB.percentage = 1;
@@ -63,6 +67,8 @@ public class SystemControl : MonoBehaviour
 
         if (state == BattleState.BATTLESTART)
         {
+            canvasController.ShowCanvasForSeconds(2f);
+
             state = BattleState.PLAYERTURN;
 
             //initialize percentage
@@ -131,5 +137,19 @@ public class SystemControl : MonoBehaviour
     {        
         float MovePercentage = CTB.percentage;
         MovePower.fillAmount = MovePercentage;
+    }
+
+    void normalMove()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+            {
+                agent.SetDestination(hit.point);
+            }
+        }
     }
 }

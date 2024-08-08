@@ -34,8 +34,10 @@ public class AiFight : MonoBehaviour
         {
             //set destination
             agent.SetDestination(playerPosition.position);
+
             //get distance
             float distance = Vector3.Distance(playerPosition.position, transform.position);
+
             //when distance lower than setting distance
             if (distance <= stoppingDistance)
             {

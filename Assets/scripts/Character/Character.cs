@@ -16,9 +16,4 @@ public class Character : MonoBehaviour
     public int AiHP;
     //ai damage
     public int AiDamage;
-
-    private void Update()
-    {
-        Debug.Log("current Hp: " + currentHP);
-    }
 }
