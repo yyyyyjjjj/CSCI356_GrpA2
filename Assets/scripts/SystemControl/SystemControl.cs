@@ -22,8 +22,10 @@ public class SystemControl : MonoBehaviour
     //agent
     public NavMeshAgent PlayerAgent;
     //UI
-
     public UIcontroller canvasController;
+    //Music
+    //public musicControl music;
+    //public GameObject Music;
 
     public LayerMask groundLayer;   // layer ground
     public NavMeshAgent agent;      // NavMesh agent
@@ -39,7 +41,7 @@ public class SystemControl : MonoBehaviour
     {
         state = BattleState.NORMAL;
         EndRdButton.onClick.AddListener(OnClick);
-        
+        //music = Music.GetComponent<musicControl>();
     }
 
     private void Update()
@@ -75,6 +77,7 @@ public class SystemControl : MonoBehaviour
             CTB.percentage = 1;
             MovePower.fillAmount = 1;
             hasRun = false;
+
         }
         
         //PLAYERTURN state
@@ -91,7 +94,6 @@ public class SystemControl : MonoBehaviour
             BattleMovePowerController();
             // player turn basic movement in the battle state.
             CTB.battleMove();
-            
         }
 
         //ENEMYTURN state
@@ -120,6 +122,7 @@ public class SystemControl : MonoBehaviour
         }
         CTB.totalDistance = 0;
     }
+
 
     void HpController ()
     {
