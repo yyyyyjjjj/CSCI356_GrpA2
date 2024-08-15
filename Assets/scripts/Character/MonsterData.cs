@@ -8,4 +8,8 @@ public class MonsterData : MonoBehaviour
     public int AiHP;
     //ai damage
     public int AiDamage;
+    //max Hp
+    public float AiMaxHp;
+    //current Hp
+    public float AiCurrentHp;
 }

@@ -15,6 +15,9 @@ public class SystemControl : MonoBehaviour
 
     public GameObject moveUi;
 
+    // monster Ui
+    public GameObject monsterUi;
+
     // Button and Image objects
     public Button EndRdButton;
     public Button SkillButton;    // Reference for the skill button
@@ -39,6 +42,10 @@ public class SystemControl : MonoBehaviour
     public bool isIdle;
     public bool hasUsedSkill = false;
 
+    //HpController
+    public GameObject HC;
+    public HPController hc;
+
     //monster position
     public Transform monsterPosition;
     public Transform playerPostion;
@@ -49,12 +56,12 @@ public class SystemControl : MonoBehaviour
         EndRdButton.onClick.AddListener(OnClick);
         animator = player.GetComponent<Animator>();
         animator.ResetTrigger("Attack");
-
+        
     }
 
     private void Update()
     {
-
+        hc = HC.GetComponent<HPController>();
         // Update references
         CTB = player.GetComponent<ClickToMoveBattle>();
         MovePower = moveUi.GetComponent<Image>();
@@ -70,6 +77,7 @@ public class SystemControl : MonoBehaviour
             CTB.percentage = 1;
             MovePower.fillAmount = 1;
             hasRun = false;
+
         }
 
         if (state == BattleState.BATTLESTART)
@@ -80,6 +88,7 @@ public class SystemControl : MonoBehaviour
             CTB.percentage = 1;
             MovePower.fillAmount = 1;
             hasRun = false;
+            monsterUi.SetActive(true);
         }
 
         if (state == BattleState.PLAYERTURN)
@@ -100,6 +109,8 @@ public class SystemControl : MonoBehaviour
         {
             CTB.percentage = 1;
             hasRun = false;
+            
+
         }
 
         // Update animation states
@@ -119,6 +130,7 @@ public class SystemControl : MonoBehaviour
         {
             state = BattleState.ENEMTURN;
             hasUsedSkill = false; // Reset skill usage for the next turn
+            hc.hasTakeDamage = false;
         }
         else if (state == BattleState.ENEMTURN)
         {
@@ -177,11 +189,8 @@ public class SystemControl : MonoBehaviour
         // if distance smaller than 2f
         if (distance <= 2f && hasUsedSkill == false)
         {
-            float skillDamage = 20f;
-            Debug.Log("Skill used! Enemy HP reduced by " + skillDamage);
+            float Damage = 8f;
             animator.SetTrigger("Attack");
-
-
             // Mark that the skill has been used
             hasUsedSkill = true;
         }else
