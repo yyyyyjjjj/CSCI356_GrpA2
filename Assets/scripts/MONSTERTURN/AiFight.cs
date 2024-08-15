@@ -12,6 +12,10 @@ public class AiFight : MonoBehaviour
     public GameObject Sc;
     //setting distance
     public float stoppingDistance = 2f;
+
+    public GameObject monsterObject;
+
+    
     //current HP
     //public float HpPercentage;
 
@@ -26,9 +30,9 @@ public class AiFight : MonoBehaviour
 
     void Update()
     {
-
         GameObject playerObject = GameObject.FindWithTag("Player");
-        Character character = playerObject.GetComponent<Character>();
+        PlayerData player = playerObject.GetComponent<PlayerData>();
+        MonsterData monster = monsterObject.GetComponent<MonsterData>();
 
         if (SC.state == BattleState.ENEMTURN)
         {
@@ -45,12 +49,11 @@ public class AiFight : MonoBehaviour
                 agent.SetDestination(transform.position);
 
                 //AI attack
-                character.currentHP -= character.AiDamage;                                     
+                player.currentHP -= monster.AiDamage;
+                Debug.Log("currentHP: " + player.currentHP);
 
                 //change turn to player
                 SC.state = BattleState.PLAYERTURN;
-
-                Debug.Log("current HP: " + character.currentHP);
             }
         }
 

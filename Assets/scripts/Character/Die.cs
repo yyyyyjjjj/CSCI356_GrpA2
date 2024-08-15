@@ -18,7 +18,7 @@ public class Die : MonoBehaviour
     void Update()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        Character Player = player.GetComponent<Character>();
+        PlayerData Player = player.GetComponent<PlayerData>();
 
         if (Player.currentHP == 0)
         {
