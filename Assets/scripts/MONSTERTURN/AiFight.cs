@@ -7,6 +7,7 @@ public class AiFight : MonoBehaviour
 {
     NavMeshAgent agent;
     SystemControl SC;
+    private Animator animator;
 
     public Transform playerPosition;
     public GameObject Sc;
@@ -15,7 +16,7 @@ public class AiFight : MonoBehaviour
 
     public GameObject monsterObject;
 
-    
+
     //current HP
     //public float HpPercentage;
 
@@ -23,8 +24,8 @@ public class AiFight : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
+        animator = GetComponent<Animator>();
 
-        
     }
 
 
@@ -51,6 +52,7 @@ public class AiFight : MonoBehaviour
                 //AI attack
                 player.currentHP -= monster.AiDamage;
                 Debug.Log("currentHP: " + player.currentHP);
+                animator.SetTrigger("isAttack");
 
                 //change turn to player
                 SC.state = BattleState.PLAYERTURN;
