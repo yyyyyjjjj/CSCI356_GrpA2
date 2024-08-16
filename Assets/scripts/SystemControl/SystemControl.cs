@@ -21,7 +21,7 @@ public class SystemControl : MonoBehaviour
     // Button and Image objects
     public Button EndRdButton;
     public Button SkillButton;    // Reference for the skill button
-    
+
     public Image MovePower;
 
     // Agent and Animator
@@ -56,7 +56,7 @@ public class SystemControl : MonoBehaviour
         EndRdButton.onClick.AddListener(OnClick);
         animator = player.GetComponent<Animator>();
         animator.ResetTrigger("Attack");
-        
+
     }
 
     private void Update()
@@ -109,7 +109,7 @@ public class SystemControl : MonoBehaviour
         {
             CTB.percentage = 1;
             hasRun = false;
-            
+
 
         }
 
@@ -193,11 +193,12 @@ public class SystemControl : MonoBehaviour
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
             hasUsedSkill = true;
-        }else
+        }
+        else
         {
             animator.ResetTrigger("Attack");
         }
-        
-            }
-          
+
+    }
+
 }

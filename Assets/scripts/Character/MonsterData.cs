@@ -13,6 +13,7 @@ public class MonsterData : MonoBehaviour
     //current Hp
     public float AiCurrentHp;
     public Animator animator;
+    public SystemControl systemControl;
     void Start()
     {
         if (animator == null)
@@ -35,6 +36,11 @@ public class MonsterData : MonoBehaviour
         animator.SetTrigger("Death"); // death animation
         GetComponent<Collider>().enabled = false; 
         this.enabled = false; 
+
+        if (systemControl != null)
+        {
+            systemControl.state = BattleState.NORMAL;
+        }
 
     }
 }
