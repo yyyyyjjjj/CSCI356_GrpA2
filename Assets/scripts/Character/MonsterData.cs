@@ -12,4 +12,29 @@ public class MonsterData : MonoBehaviour
     public float AiMaxHp;
     //current Hp
     public float AiCurrentHp;
+    public Animator animator;
+    void Start()
+    {
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+    }
+
+    void Update()
+    {
+        if (AiCurrentHp <= 0)
+        {
+            AiCurrentHp = 0;
+            Die(); 
+        }
+    }
+
+    void Die()
+    {
+        animator.SetTrigger("Death"); // death animation
+        GetComponent<Collider>().enabled = false; 
+        this.enabled = false; 
+
+    }
 }
