@@ -14,6 +14,7 @@ public class MonsterData : MonoBehaviour
     public float AiCurrentHp;
     public Animator animator;
     public SystemControl systemControl;
+    public AiTestPlayer aitest;
     void Start()
     {
         if (animator == null)
@@ -39,7 +40,9 @@ public class MonsterData : MonoBehaviour
 
         if (systemControl != null)
         {
+            aitest.enabled = false;
             systemControl.state = BattleState.NORMAL;
+            systemControl.monsterUi.SetActive(false);
         }
 
     }
