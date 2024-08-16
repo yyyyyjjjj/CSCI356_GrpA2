@@ -25,7 +25,6 @@ public class AiFight : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
         animator = GetComponent<Animator>();
-
     }
 
 

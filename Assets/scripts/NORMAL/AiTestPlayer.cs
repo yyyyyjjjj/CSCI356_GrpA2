@@ -13,10 +13,12 @@ public class AiTestPlayer : MonoBehaviour
 
     SystemControl SC;
     public GameObject sc;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         SC = sc.GetComponent<SystemControl>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class AiTestPlayer : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 SC.state = BattleState.BATTLESTART;
+                animator.SetTrigger("startBattle");
             }
         }
     }
