@@ -32,6 +32,11 @@ public class MonsterData : MonoBehaviour
         }
     }
 
+    public void takenDamage(int damage){
+        AiCurrentHp -= damage;
+        animator.SetTrigger("isHit");
+    }
+
     void Die()
     {
         animator.SetTrigger("Death"); // death animation
