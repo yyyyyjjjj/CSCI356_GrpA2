@@ -48,10 +48,10 @@ public class SystemControl : MonoBehaviour
 
     //monster position
     public Transform monsterPosition1;
-    public Transform monsterPosition2;
-    //public Transform monsterPosition3;
     public Transform playerPostion;
 
+    //defense
+    public bool hasUsedDefense = false;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -187,7 +187,6 @@ public class SystemControl : MonoBehaviour
 
 
         float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
-        float distance2 = Vector3.Distance(monsterPosition2.position, playerPostion.position);
 
         // if distance smaller than 2f
         if (distance1 <= 2f && hasUsedSkill == false)
@@ -195,24 +194,18 @@ public class SystemControl : MonoBehaviour
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
             hasUsedSkill = true;
-        }
-        else
+        }else
         {
             animator.ResetTrigger("Attack");
         }
+    }
 
-        if (distance2 <= 2f && hasUsedSkill == false)
+    public void defense()
+    {
+        if (hasUsedSkill == false)
         {
-            animator.SetTrigger("Attack");
-            // Mark that the skill has been used
-            hasUsedSkill = true;
+            hasUsedDefense = true;
         }
-        else
-        {
-            animator.ResetTrigger("Attack");
-        }
-
-
     }
 
 }
