@@ -75,8 +75,5 @@ public class HPController : MonoBehaviour
             monster.AiCurrentHp -= player.PlayerDamage;
             hasTakeDamage = true;
         }
-
-        
-
     }
 }

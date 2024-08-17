@@ -9,6 +9,7 @@ public class AiFight : MonoBehaviour
     SystemControl SC;
     private Animator animator;
 
+
     public Transform playerPosition;
     public GameObject Sc;
     //setting distance
@@ -24,7 +25,7 @@ public class AiFight : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
-        animator = GetComponent<Animator>();
+        animator = monsterObject.GetComponent<Animator>();
     }
 
 
