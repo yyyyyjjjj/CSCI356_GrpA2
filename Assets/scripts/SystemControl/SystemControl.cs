@@ -63,6 +63,7 @@ public class SystemControl : MonoBehaviour
 
     private void Update()
     {
+
         hc = HC.GetComponent<HPController>();
         // Update references
         CTB = player.GetComponent<ClickToMoveBattle>();
@@ -205,6 +206,25 @@ public class SystemControl : MonoBehaviour
         if (hasUsedSkill == false)
         {
             hasUsedDefense = true;
+        }
+    }
+
+    public GameObject fireballPrefab;
+    public Transform firePosition;
+    public float fireballSpeed = 20f;
+    public void fireball()
+    {
+        float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
+        
+
+        if (distance <= 20f && hasUsedSkill == false)
+        {
+            GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
+            Rigidbody rb = fireball.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = firePosition.forward * fireballSpeed;
+            }
         }
     }
 

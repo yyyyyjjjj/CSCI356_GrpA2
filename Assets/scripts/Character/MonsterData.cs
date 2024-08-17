@@ -12,6 +12,7 @@ public class MonsterData : MonoBehaviour
     public float AiMaxHp;
     //current Hp
     public float AiCurrentHp;
+
     public Animator animator;
     public SystemControl systemControl;
     public AiTestPlayer aitest;
