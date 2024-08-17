@@ -21,7 +21,7 @@ public class SystemControl : MonoBehaviour
     // Button and Image objects
     public Button EndRdButton;
     public Button SkillButton;    // Reference for the skill button
-    
+
     public Image MovePower;
 
     // Agent and Animator
@@ -47,20 +47,23 @@ public class SystemControl : MonoBehaviour
     public HPController hc;
 
     //monster position
-    public Transform monsterPosition;
+    public Transform monsterPosition1;
     public Transform playerPostion;
 
+    //defense
+    public bool hasUsedDefense = false;
     private void Start()
     {
         state = BattleState.NORMAL;
         EndRdButton.onClick.AddListener(OnClick);
         animator = player.GetComponent<Animator>();
         animator.ResetTrigger("Attack");
-        
+
     }
 
     private void Update()
     {
+
         hc = HC.GetComponent<HPController>();
         // Update references
         CTB = player.GetComponent<ClickToMoveBattle>();
@@ -109,7 +112,7 @@ public class SystemControl : MonoBehaviour
         {
             CTB.percentage = 1;
             hasRun = false;
-            
+
 
         }
 
@@ -184,12 +187,11 @@ public class SystemControl : MonoBehaviour
         // Ensure the skill can only be used during the player's turn
 
 
-        float distance = Vector3.Distance(monsterPosition.position, playerPostion.position);
+        float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance <= 2f && hasUsedSkill == false)
+        if (distance1 <= 2f && hasUsedSkill == false)
         {
-            float Damage = 8f;
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
             hasUsedSkill = true;
@@ -197,7 +199,33 @@ public class SystemControl : MonoBehaviour
         {
             animator.ResetTrigger("Attack");
         }
+    }
+
+    public void defense()
+    {
+        if (hasUsedSkill == false)
+        {
+            hasUsedDefense = true;
+        }
+    }
+
+    public GameObject fireballPrefab;
+    public Transform firePosition;
+    public float fireballSpeed = 20f;
+    public void fireball()
+    {
+        float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
         
+
+        if (distance <= 20f && hasUsedSkill == false)
+        {
+            GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
+            Rigidbody rb = fireball.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = firePosition.forward * fireballSpeed;
             }
-          
+        }
+    }
+
 }

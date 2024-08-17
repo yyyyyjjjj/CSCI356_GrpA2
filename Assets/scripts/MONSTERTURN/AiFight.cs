@@ -7,6 +7,8 @@ public class AiFight : MonoBehaviour
 {
     NavMeshAgent agent;
     SystemControl SC;
+    private Animator animator;
+
 
     public Transform playerPosition;
     public GameObject Sc;
@@ -15,7 +17,7 @@ public class AiFight : MonoBehaviour
 
     public GameObject monsterObject;
 
-    
+
     //current HP
     //public float HpPercentage;
 
@@ -23,8 +25,7 @@ public class AiFight : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
-
-        
+        animator = monsterObject.GetComponent<Animator>();
     }
 
 
@@ -45,15 +46,33 @@ public class AiFight : MonoBehaviour
             //when distance lower than setting distance
             if (distance <= stoppingDistance)
             {
-                //AI stop at 2f distance to player
-                agent.SetDestination(transform.position);
+                if (SC.hasUsedDefense == true)
+                {
+                    //AI stop at 2f distance to player
+                    agent.SetDestination(transform.position);
 
-                //AI attack
-                player.currentHP -= monster.AiDamage;
-                Debug.Log("currentHP: " + player.currentHP);
+                    //AI attack
+                    player.currentHP -= monster.AiDamage/2;
 
-                //change turn to player
-                SC.state = BattleState.PLAYERTURN;
+                    animator.SetTrigger("isAttack");
+
+                    //change turn to player
+                    SC.state = BattleState.PLAYERTURN;
+                }
+                else
+                {
+                    //AI stop at 2f distance to player
+                    agent.SetDestination(transform.position);
+
+                    //AI attack
+                    player.currentHP -= monster.AiDamage;
+                    Debug.Log("currentHP: " + player.currentHP);
+                    animator.SetTrigger("isAttack");
+
+                    //change turn to player
+                    SC.state = BattleState.PLAYERTURN;
+                }
+                
             }
         }
 

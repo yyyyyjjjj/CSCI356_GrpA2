@@ -72,11 +72,8 @@ public class HPController : MonoBehaviour
 
         if (sc.hasUsedSkill == true && hasTakeDamage == false)
         {
-            monster.AiCurrentHp -= player.PlayerDamage;
+            monster.takenDamage(player.PlayerDamage);
             hasTakeDamage = true;
         }
-
-        
-
     }
 }
