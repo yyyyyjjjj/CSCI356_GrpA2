@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class ClickToMoveBattle : MonoBehaviour
 {
-    public LayerMask groundLayer;   // 地面的图层，确保只有地面被点击时才会移动
-    public NavMeshAgent agent;      // NavMesh代理，用于移动
-    private Vector3 lastPosition; //上一帧位置
-    public float totalDistance; //一共移动的距离
-    public float percentage; //移动百分比
+    public LayerMask groundLayer;   
+    public NavMeshAgent agent;     
+    private Vector3 lastPosition; 
+    public float totalDistance; 
+    public float percentage; 
     public float MovePower;
     public GameObject SC;
     SystemControl sc;
@@ -29,7 +30,7 @@ public class ClickToMoveBattle : MonoBehaviour
         {            
             
             //reference
-            Character player = GetComponent<Character>();
+            PlayerData player = GetComponent<PlayerData>();
             MovePower = player.movePower;
 
             Vector3 currentPosition = player.transform.position;
@@ -43,6 +44,7 @@ public class ClickToMoveBattle : MonoBehaviour
                 percentage = 1;
                 totalDistance = 0;
                 hasRun = true;
+
             }else
             {
                 float distanceThisFrame = Vector3.Distance(lastPosition, currentPosition);
@@ -62,9 +64,15 @@ public class ClickToMoveBattle : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+                    if (EventSystem.current.IsPointerOverGameObject())
                     {
+                        return;
+                    }
+                    else if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+                    {
+
                         agent.SetDestination(hit.point);
+                        hasRun = true;
                     }
                 }
             }

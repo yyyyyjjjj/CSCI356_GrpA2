@@ -1,89 +1,99 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.TextCore.Text;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-//ËÄÖÖÕ½¶·×´Ì¬
 public enum BattleState { NORMAL, BATTLESTART, PLAYERTURN, ENEMTURN, WON, LOST }
+
 public class SystemControl : MonoBehaviour
 {
-    // some game object        
+    // Game objects and UI elements        
     public GameObject enemy;
     public GameObject player;
-    public GameObject HpUi;
+
     public GameObject moveUi;
-    // button object
+
+    // monster Ui
+    public GameObject monsterUi;
+
+    // Button and Image objects
     public Button EndRdButton;
-    public Image HP;
+    public Button SkillButton;    // Reference for the skill button
+    
     public Image MovePower;
-    //agent
+
+    // Agent and Animator
     public NavMeshAgent PlayerAgent;
-    //UI
+    public Animator animator;
+
+    // Other references
     public UIcontroller canvasController;
-    //Music
-    //public musicControl music;
-    //public GameObject Music;
-
-    public LayerMask groundLayer;   // layer ground
-    public NavMeshAgent agent;      // NavMesh agent
-
-    // reference
+    public LayerMask groundLayer;
+    public LayerMask UILayer;
+    public NavMeshAgent agent;
     ClickToMoveBattle CTB;
     public BattleState state;
 
-    // run one time
+    // State management
     private bool hasRun = false;
+    public bool isRunning;
+    public bool isIdle;
+    public bool hasUsedSkill = false;
+
+    //HpController
+    public GameObject HC;
+    public HPController hc;
+
+    //monster position
+    public Transform monsterPosition;
+    public Transform playerPostion;
 
     private void Start()
     {
         state = BattleState.NORMAL;
         EndRdButton.onClick.AddListener(OnClick);
-        //music = Music.GetComponent<musicControl>();
+        animator = player.GetComponent<Animator>();
+        animator.ResetTrigger("Attack");
+        
     }
 
     private void Update()
     {
-        // Hp update in all state
-        HpController();
-        // using these reference
+        hc = HC.GetComponent<HPController>();
+        // Update references
         CTB = player.GetComponent<ClickToMoveBattle>();
-
         MovePower = moveUi.GetComponent<Image>();
-        HP = HpUi.GetComponent<Image>();
 
-        
-        // NORMAL state
+
+        // Check if the player is moving
+        bool isPlayerMoving = PlayerAgent.velocity.magnitude > 0.1f;
+
+        // Handle different states
         if (state == BattleState.NORMAL)
         {
-            // player basic movement in the normal state
             normalMove();
-
-            //initialize percentage
             CTB.percentage = 1;
             MovePower.fillAmount = 1;
             hasRun = false;
+
         }
 
         if (state == BattleState.BATTLESTART)
         {
             canvasController.ShowCanvasForSeconds(2f);
+            state = BattleState.PLAYERTURN;  // Transition to player's turn after battle starts
 
-            state = BattleState.PLAYERTURN;
-
-            //initialize percentage
             CTB.percentage = 1;
             MovePower.fillAmount = 1;
             hasRun = false;
-
+            monsterUi.SetActive(true);
         }
-        
-        //PLAYERTURN state
+
         if (state == BattleState.PLAYERTURN)
         {
-            if (hasRun == false)
+            if (!hasRun)
             {
                 MovePower.fillAmount = 1;
                 PlayerAgent.ResetPath();
@@ -92,56 +102,53 @@ public class SystemControl : MonoBehaviour
             }
 
             BattleMovePowerController();
-            // player turn basic movement in the battle state.
             CTB.battleMove();
         }
 
-        //ENEMYTURN state
         if (state == BattleState.ENEMTURN)
         {
-
-            //initialize percentage
             CTB.percentage = 1;
             hasRun = false;
+            
+
         }
 
-        //debug
-        Debug.Log("current state£º" + state);
+        // Update animation states
+        isRunning = isPlayerMoving;
+        isIdle = !isPlayerMoving;
+        animator.SetBool("IsRunning", isRunning);
+        animator.SetBool("isIdle", isIdle);
+
+        // Debug current state
+        Debug.Log("Current state: " + state + ", isPlayerMoving: " + isPlayerMoving);
     }
-    
-    
-    //change state method
+
+    // Method to change state when the end round button is clicked
     void OnClick()
     {
         if (state == BattleState.PLAYERTURN)
         {
             state = BattleState.ENEMTURN;
-        }else if (state == BattleState.ENEMTURN)
+            hasUsedSkill = false; // Reset skill usage for the next turn
+            hc.hasTakeDamage = false;
+        }
+        else if (state == BattleState.ENEMTURN)
         {
             state = BattleState.PLAYERTURN;
+            hasUsedSkill = false; // Reset skill usage for the player's turn
         }
         CTB.totalDistance = 0;
     }
 
 
-    void HpController ()
-    {
-        //some object get;
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        Character character = playerObject.GetComponent<Character>();
-
-
-        //percentage of HP UI;
-        float HpPercentage = character.currentHP / character.maxHP;
-        HP.fillAmount = HpPercentage;
-    }
-
+    // Method to control move power in battle
     void BattleMovePowerController()
-    {        
+    {
         float MovePercentage = CTB.percentage;
         MovePower.fillAmount = MovePercentage;
     }
 
+    // Method to handle normal movement
     void normalMove()
     {
         if (Input.GetMouseButton(0))
@@ -149,10 +156,48 @@ public class SystemControl : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+            if (EventSystem.current.IsPointerOverGameObject())
             {
+                return;
+            }
+            else if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+            {
+
                 agent.SetDestination(hit.point);
+                hasRun = true;
             }
         }
+        else
+        {
+            hasRun = false;
+        }
+
+        isRunning = hasRun;
+        isIdle = !hasRun;
+        animator.SetBool("IsRunning", isRunning);
+        animator.SetBool("isIdle", isIdle);
     }
+
+    // Method to handle skill usage
+    public void UseSkill()
+    {
+        // Ensure the skill can only be used during the player's turn
+
+
+        float distance = Vector3.Distance(monsterPosition.position, playerPostion.position);
+
+        // if distance smaller than 2f
+        if (distance <= 2f && hasUsedSkill == false)
+        {
+            float Damage = 8f;
+            animator.SetTrigger("Attack");
+            // Mark that the skill has been used
+            hasUsedSkill = true;
+        }else
+        {
+            animator.ResetTrigger("Attack");
+        }
+        
+            }
+          
 }
