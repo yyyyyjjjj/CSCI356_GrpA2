@@ -47,7 +47,9 @@ public class SystemControl : MonoBehaviour
     public HPController hc;
 
     //monster position
-    public Transform monsterPosition;
+    public Transform monsterPosition1;
+    public Transform monsterPosition2;
+    //public Transform monsterPosition3;
     public Transform playerPostion;
 
     private void Start()
@@ -184,12 +186,12 @@ public class SystemControl : MonoBehaviour
         // Ensure the skill can only be used during the player's turn
 
 
-        float distance = Vector3.Distance(monsterPosition.position, playerPostion.position);
+        float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
+        float distance2 = Vector3.Distance(monsterPosition2.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance <= 2f && hasUsedSkill == false)
+        if (distance1 <= 2f && hasUsedSkill == false)
         {
-            float Damage = 8f;
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
             hasUsedSkill = true;
@@ -198,6 +200,18 @@ public class SystemControl : MonoBehaviour
         {
             animator.ResetTrigger("Attack");
         }
+
+        if (distance2 <= 2f && hasUsedSkill == false)
+        {
+            animator.SetTrigger("Attack");
+            // Mark that the skill has been used
+            hasUsedSkill = true;
+        }
+        else
+        {
+            animator.ResetTrigger("Attack");
+        }
+
 
     }
 
