@@ -5,27 +5,64 @@ using UnityEngine;
 public class attackVoice : MonoBehaviour
 {
     public GameObject SC;
-    public AudioSource music;
+    public AudioSource audioSource;
+    public AudioClip attackClip;
+    public AudioClip fireClip;
+    public AudioClip lightningClip;
+    public AudioClip lightningClip2;
+
 
     SystemControl sc;
 
+    //play one times
+    public bool oneTimes = false;
 
     void Start()
     {
-        music = GetComponent<AudioSource>();
-        music.enabled = false;
+        audioSource.loop = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         sc = SC.GetComponent<SystemControl>();
-        if (sc.hasUsedSkill == true)
+        if (sc.hasUsedSkill)
         {
-            music.enabled = true;
-        }else
+            audioSource.clip = attackClip;
+        }
+        else if (sc.hasUsedFireBall)
         {
-            music.enabled=false;
+            audioSource.clip = fireClip;
+        }
+        else if (sc.hasUsedLightning)
+        {
+            audioSource.clip = lightningClip;
+        }
+        else if (sc.hasHeal)
+        {
+            Debug.Log("heal");
+            audioSource.clip = lightningClip2;
+        }
+        else
+        {
+            audioSource.clip = null; 
+        }
+
+        // ≤•∑≈ªÚÕ£÷π“Ù∆µ
+        if (audioSource.clip != null)
+        {
+            if (!audioSource.isPlaying && oneTimes == false)
+            {
+                audioSource.Play();
+                oneTimes = true;
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
 }

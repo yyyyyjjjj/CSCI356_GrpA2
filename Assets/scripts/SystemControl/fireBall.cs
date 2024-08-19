@@ -13,7 +13,7 @@ public class fireBall : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        monsterData.AiCurrentHp -= 5;
+        monsterData.takenDamage(3);
         Destroy(gameObject);
     }
 }

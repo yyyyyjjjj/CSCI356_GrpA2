@@ -43,10 +43,5 @@ public class AiNavigation : MonoBehaviour
     void MoveToNextTarget()
     {
 
-        // 设置下一个目标点
-        agent.SetDestination(target[currentTargetIndex].position);
-
-        // 更新索引，循环到起始点
-        currentTargetIndex = (currentTargetIndex + 1) % target.Length;
     }   
 }

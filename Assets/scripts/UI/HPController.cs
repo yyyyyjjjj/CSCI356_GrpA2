@@ -18,6 +18,8 @@ public class HPController : MonoBehaviour
 
     public Animator animator;
 
+    public bool times = false;
+
     
 
     // Start is called before the first frame update
@@ -46,7 +48,14 @@ public class HPController : MonoBehaviour
         
         float HpPercentage = player.currentHP / player.maxHP;
         playerHP.fillAmount = HpPercentage;
-        if (player.currentHP == 0)
+
+        if (sc.hasHeal == true && times == false)
+        {
+            player.currentHP += 10;
+            times = true;
+        }
+
+        if (player.currentHP <= 0)
         {
             animator.SetBool("Death", true);
 
@@ -75,5 +84,16 @@ public class HPController : MonoBehaviour
             monster.takenDamage(player.PlayerDamage);
             hasTakeDamage = true;
         }
+        
+        if (monster.AiCurrentHp <= 0)
+        {
+            animator.SetBool("Death", true);
+
+        }
+        else
+        {
+            animator.SetBool("Death", false);
+        }
+
     }
 }
