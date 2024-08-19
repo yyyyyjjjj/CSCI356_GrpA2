@@ -52,9 +52,6 @@ public class SystemControl : MonoBehaviour
 
     //defense
     public bool hasUsedDefense = false;
-
-    //times
-    public int roundTimes = 0;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -137,8 +134,6 @@ public class SystemControl : MonoBehaviour
             state = BattleState.ENEMTURN;
             hasUsedSkill = false; // Reset skill usage for the next turn
             hc.hasTakeDamage = false;
-            // calculate times
-            roundTimes += 1;
         }
         else if (state == BattleState.ENEMTURN)
         {
@@ -195,7 +190,7 @@ public class SystemControl : MonoBehaviour
         float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance1 <= 6f && hasUsedSkill == false)
+        if (distance1 <= 2f && hasUsedSkill == false)
         {
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
