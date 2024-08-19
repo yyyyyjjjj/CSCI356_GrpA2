@@ -52,6 +52,12 @@ public class SystemControl : MonoBehaviour
 
     //defense
     public bool hasUsedDefense = false;
+
+    //fireball
+    public bool hasUsedFireBall = false;
+
+    // round times
+    public int roundTims = 0;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -134,6 +140,9 @@ public class SystemControl : MonoBehaviour
             state = BattleState.ENEMTURN;
             hasUsedSkill = false; // Reset skill usage for the next turn
             hc.hasTakeDamage = false;
+            hasUsedFireBall = false;
+
+            roundTims += 1;
         }
         else if (state == BattleState.ENEMTURN)
         {
@@ -190,7 +199,7 @@ public class SystemControl : MonoBehaviour
         float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance1 <= 2f && hasUsedSkill == false)
+        if (distance1 <= 5f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false)
         {
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
@@ -203,7 +212,7 @@ public class SystemControl : MonoBehaviour
 
     public void defense()
     {
-        if (hasUsedSkill == false)
+        if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false)
         {
             hasUsedDefense = true;
         }
@@ -217,7 +226,7 @@ public class SystemControl : MonoBehaviour
         float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
         
 
-        if (distance <= 20f && hasUsedSkill == false)
+        if (distance <= 20f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false)
         {
             GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
             Rigidbody rb = fireball.GetComponent<Rigidbody>();
@@ -225,6 +234,7 @@ public class SystemControl : MonoBehaviour
             {
                 rb.velocity = firePosition.forward * fireballSpeed;
             }
+            hasUsedFireBall = true;
         }
     }
 
