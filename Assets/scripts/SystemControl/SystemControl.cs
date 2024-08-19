@@ -125,8 +125,6 @@ public class SystemControl : MonoBehaviour
         {
             CTB.percentage = 1;
             hasRun = false;
-
-
         }
 
         // Update animation states
