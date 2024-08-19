@@ -82,5 +82,16 @@ public class HPController : MonoBehaviour
             monster.takenDamage(player.PlayerDamage);
             hasTakeDamage = true;
         }
+        
+        if (monster.AiCurrentHp <= 0)
+        {
+            animator.SetBool("Death", true);
+
+        }
+        else
+        {
+            animator.SetBool("Death", false);
+        }
+
     }
 }
