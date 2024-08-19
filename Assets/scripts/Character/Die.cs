@@ -20,7 +20,7 @@ public class Die : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         PlayerData Player = player.GetComponent<PlayerData>();
 
-        if (Player.currentHP <= 0)
+        if (Player.currentHP == 0)
         {
             restart.enabled = true;
         }        
