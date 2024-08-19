@@ -13,7 +13,7 @@ public class fireBall : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        monsterData.takenDamage(3);
+        monsterData.takenDamage(5);
         Destroy(gameObject);
     }
 }
