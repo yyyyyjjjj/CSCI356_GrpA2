@@ -46,6 +46,13 @@ public class HPController : MonoBehaviour
         
         float HpPercentage = player.currentHP / player.maxHP;
         playerHP.fillAmount = HpPercentage;
+
+        if (sc.hasHeal == true)
+        {
+            player.currentHP += 10;
+            sc.hasHeal = false;
+        }
+
         if (player.currentHP <= 0)
         {
             animator.SetBool("Death", true);

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -58,6 +59,12 @@ public class SystemControl : MonoBehaviour
 
     // round times
     public int roundTims = 0;
+
+    //lightning
+    public bool hasUsedLightning = false;
+
+    //heal
+    public bool hasHeal = false;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -141,7 +148,7 @@ public class SystemControl : MonoBehaviour
             hasUsedSkill = false; // Reset skill usage for the next turn
             hc.hasTakeDamage = false;
             hasUsedFireBall = false;
-
+            hasUsedLightning = false;
             roundTims += 1;
         }
         else if (state == BattleState.ENEMTURN)
@@ -199,7 +206,7 @@ public class SystemControl : MonoBehaviour
         float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance1 <= 5f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false)
+        if (distance1 <= 5f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
@@ -212,7 +219,7 @@ public class SystemControl : MonoBehaviour
 
     public void defense()
     {
-        if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false)
+        if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             hasUsedDefense = true;
         }
@@ -226,7 +233,7 @@ public class SystemControl : MonoBehaviour
         float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
         
 
-        if (distance <= 20f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false)
+        if (distance <= 20f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
             Rigidbody rb = fireball.GetComponent<Rigidbody>();
@@ -235,6 +242,34 @@ public class SystemControl : MonoBehaviour
                 rb.velocity = firePosition.forward * fireballSpeed;
             }
             hasUsedFireBall = true;
+        }
+    }
+
+    public GameObject lightPrefab;
+    public float lightningSpeed = 20f;
+    public void Lightning()
+    {
+        float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
+
+
+        if (distance <= 20f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
+        {
+            GameObject lightning = Instantiate(lightPrefab, firePosition.position, firePosition.rotation);
+            Rigidbody rb = lightning.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = firePosition.forward * lightningSpeed;
+            }
+            hasUsedLightning = true;
+        }
+    }
+
+    
+    public void healing()
+    {
+        if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false && hasHeal == false)
+        {
+            hasHeal = true;
         }
     }
 
