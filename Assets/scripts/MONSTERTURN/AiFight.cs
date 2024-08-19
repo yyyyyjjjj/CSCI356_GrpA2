@@ -23,7 +23,7 @@ public class AiFight : MonoBehaviour
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();        
+        agent = GetComponent<NavMeshAgent>();
         animator = monsterObject.GetComponent<Animator>();
     }
 
@@ -47,6 +47,15 @@ public class AiFight : MonoBehaviour
 
             //get distance
             float distance = Vector3.Distance(playerPosition.position, transform.position);
+
+            if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
 
             //when distance lower than setting distance
             if (distance <= 6)
@@ -93,7 +102,7 @@ public class AiFight : MonoBehaviour
                     // wo ye bu zhi dao ni men yao she ji shen me skill 2
                     // ji de ba guai wu de animator complete le
                 }
-                
+
                 if (SC.roundTimes % 3 == 0)
                 {
                     // for now we only have 3 ge skill
