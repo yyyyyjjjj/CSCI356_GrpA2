@@ -13,7 +13,7 @@ public class AiFight : MonoBehaviour
     public Transform playerPosition;
     public GameObject Sc;
     //setting distance
-    public float stoppingDistance = 2f;
+    public float stoppingDistance = 5f;
 
     public GameObject monsterObject;
 
@@ -43,8 +43,17 @@ public class AiFight : MonoBehaviour
             //get distance
             float distance = Vector3.Distance(playerPosition.position, transform.position);
 
+            if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
+
             //when distance lower than setting distance
-            if (distance <= stoppingDistance)
+            if (distance <= 5)
             {
                 if (SC.hasUsedDefense == true)
                 {
@@ -52,10 +61,10 @@ public class AiFight : MonoBehaviour
                     agent.SetDestination(transform.position);
 
                     //AI attack
-                    player.currentHP -= monster.AiDamage/2;
+                    player.currentHP -= monster.AiDamage / 2;
 
                     animator.SetTrigger("isAttack");
-
+                    SC.hasUsedDefense = false;
                     //change turn to player
                     SC.state = BattleState.PLAYERTURN;
                 }
@@ -72,7 +81,7 @@ public class AiFight : MonoBehaviour
                     //change turn to player
                     SC.state = BattleState.PLAYERTURN;
                 }
-                
+
             }
         }
 

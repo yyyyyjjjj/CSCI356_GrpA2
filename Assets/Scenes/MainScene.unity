@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.75
+      value: 40.99
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -475,7 +475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 371.26
+      value: 368.58
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -624,8 +624,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29900612}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0539847, y: 0.92158073, z: -0.34923884, w: -0.16064517}
-  m_LocalPosition: {x: -207.01147, y: 76.21974, z: -265.39383}
+  m_LocalRotation: {x: 0.1125424, y: 0.92270714, z: -0.36839852, w: -0.015108824}
+  m_LocalPosition: {x: -207.38202, y: 76.30298, z: -265.93533}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1270,8 +1270,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321200460}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0539847, y: 0.92158073, z: -0.34923884, w: -0.16064517}
-  m_LocalPosition: {x: 0, y: -0.000015258789, z: 0}
+  m_LocalRotation: {x: 0.1125424, y: 0.92270714, z: -0.36839852, w: -0.015108824}
+  m_LocalPosition: {x: 0, y: -0.0000076293945, z: 0.0000134991615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1957,7 +1957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AiHP: 10
-  AiDamage: 30
+  AiDamage: 10
   AiMaxHp: 10
   AiCurrentHp: 10
   animator: {fileID: 399567766}
@@ -3196,6 +3196,7 @@ MonoBehaviour:
   monsterPosition1: {fileID: 399567764}
   playerPostion: {fileID: 1547035613}
   hasUsedDefense: 0
+  hasUsedFireball: 0
   fireballPrefab: {fileID: 3486844822488063037, guid: 6604680a207e3304093c9721b02a86c2, type: 3}
   firePosition: {fileID: 1585051489}
   fireballSpeed: 20
@@ -5560,7 +5561,7 @@ Transform:
   m_GameObject: {fileID: 1882121204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -207.01147, y: 76.21974, z: -265.39383}
+  m_LocalPosition: {x: -207.38202, y: 76.30298, z: -265.93533}
   m_LocalScale: {x: 4.554, y: 1, z: 9.042808}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5999,8 +6000,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965730895}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0539847, y: 0.92158073, z: -0.34923884, w: -0.16064517}
-  m_LocalPosition: {x: 0, y: -0.000015258789, z: 0}
+  m_LocalRotation: {x: 0.1125424, y: 0.92270714, z: -0.36839852, w: -0.015108824}
+  m_LocalPosition: {x: 0, y: -0.0000076293945, z: 0.0000134991615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6187,8 +6188,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.053984694, y: 0.92158073, z: -0.34923887, w: -0.16064517}
+<<<<<<< HEAD
+  m_LocalRotation: {x: 0.1125424, y: 0.92270714, z: -0.36839852, w: -0.015108824}
+  m_LocalPosition: {x: -0.0000033506346, y: -0.000015258789, z: 0.000026998323}
+=======
+  m_LocalRotation: {x: 0.053984687, y: 0.92158073, z: -0.34923887, w: -0.16064517}
   m_LocalPosition: {x: 0, y: -0.000030517578, z: 0}
+>>>>>>> 13911812697342af40e4d0b3903fa1df62986fb7
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6601,18 +6607,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 685706498228103955, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
-      propertyPath: Sc
-      value: 
-      objectReference: {fileID: 979498097}
-    - target: {fileID: 685706498228103955, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
-      propertyPath: AiOver
-      value: 
-      objectReference: {fileID: 402137000}
-    - target: {fileID: 685706498228103955, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
-      propertyPath: playerPosition
-      value: 
-      objectReference: {fileID: 1547035613}
+    - target: {fileID: 971994670, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
+      propertyPath: m_Name
+      value: DragonSoulEaterRedPBR
+      objectReference: {fileID: 0}
+    - target: {fileID: 971994670, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971994670, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
+      propertyPath: m_TagString
+      value: monster1
+      objectReference: {fileID: 0}
     - target: {fileID: 971994671, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -6669,6 +6675,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 685706498228103955, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
+      propertyPath: Sc
+      value: 
+      objectReference: {fileID: 979498097}
+    - target: {fileID: 685706498228103955, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
+      propertyPath: AiOver
+      value: 
+      objectReference: {fileID: 402137000}
+    - target: {fileID: 685706498228103955, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 1547035613}
     - target: {fileID: 5374551328398635780, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
       propertyPath: player
       value: 
@@ -6684,18 +6702,6 @@ PrefabInstance:
     - target: {fileID: 7317423248876856025, guid: 1e6c8c40a99cbe3479ff162c8563f77d, type: 3}
       propertyPath: target.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 971994670, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
-      propertyPath: m_Name
-      value: DragonSoulEaterRedPBR
-      objectReference: {fileID: 0}
-    - target: {fileID: 971994670, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 971994670, guid: a0740f648a2224844a894ba6a107d0a9, type: 3}
-      propertyPath: m_TagString
-      value: monster1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

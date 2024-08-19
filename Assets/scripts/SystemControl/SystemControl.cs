@@ -52,6 +52,9 @@ public class SystemControl : MonoBehaviour
 
     //defense
     public bool hasUsedDefense = false;
+
+    //fire ball
+    public bool hasUsedFireball = false;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -134,6 +137,7 @@ public class SystemControl : MonoBehaviour
             state = BattleState.ENEMTURN;
             hasUsedSkill = false; // Reset skill usage for the next turn
             hc.hasTakeDamage = false;
+            hasUsedFireball = false;
         }
         else if (state == BattleState.ENEMTURN)
         {
@@ -142,8 +146,6 @@ public class SystemControl : MonoBehaviour
         }
         CTB.totalDistance = 0;
     }
-
-
     // Method to control move power in battle
     void BattleMovePowerController()
     {
@@ -185,12 +187,10 @@ public class SystemControl : MonoBehaviour
     public void UseSkill()
     {
         // Ensure the skill can only be used during the player's turn
-
-
         float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance1 <= 2f && hasUsedSkill == false)
+        if (distance1 <= 5f && hasUsedSkill == false && hasUsedFireball == false && hasUsedDefense == false)
         {
             animator.SetTrigger("Attack");
             // Mark that the skill has been used
@@ -203,7 +203,7 @@ public class SystemControl : MonoBehaviour
 
     public void defense()
     {
-        if (hasUsedSkill == false)
+        if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireball == false)
         {
             hasUsedDefense = true;
         }
@@ -217,7 +217,7 @@ public class SystemControl : MonoBehaviour
         float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
         
 
-        if (distance <= 20f && hasUsedSkill == false)
+        if (distance <= 20f && hasUsedSkill == false && hasUsedFireball == false && hasUsedDefense == false)
         {
             GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
             Rigidbody rb = fireball.GetComponent<Rigidbody>();
@@ -225,6 +225,7 @@ public class SystemControl : MonoBehaviour
             {
                 rb.velocity = firePosition.forward * fireballSpeed;
             }
+            hasUsedFireball = true;
         }
     }
 
