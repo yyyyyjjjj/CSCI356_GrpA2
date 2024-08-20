@@ -91,10 +91,7 @@ public class AiFight : MonoBehaviour
 
                         //AI attack
                         player.currentHP -= monster.AiDamage / 2;
-                        // second animation here
-                        // just change the trigger
-                        // if you want we can add new damage to this attack
-                        // but now we first done this
+                        // tail attack
                         animator.SetTrigger("isTailAttack");
 
                         SC.hasUsedDefense = false;
@@ -128,7 +125,7 @@ public class AiFight : MonoBehaviour
                         // change the trigger
                         // I already test every
                         // for now everything just find.
-                        animator.SetTrigger("isAttack");
+                        animator.SetTrigger("fireBallShot");
 
                         SC.hasUsedDefense = false;
                         //change turn to player
@@ -142,7 +139,7 @@ public class AiFight : MonoBehaviour
                         //AI attack
                         player.currentHP -= monster.AiDamage;
                         Debug.Log("currentHP: " + player.currentHP);
-                        animator.SetTrigger("isAttack");
+                        animator.SetTrigger("fireBallShot");
 
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;
