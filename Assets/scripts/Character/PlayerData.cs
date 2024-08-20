@@ -12,4 +12,9 @@ public class PlayerData : MonoBehaviour
     public float currentHP;
     //move power
     public float movePower;
+
+    public void takenDamage(int damage)
+    {
+        currentHP -= damage;
+    }
 }
