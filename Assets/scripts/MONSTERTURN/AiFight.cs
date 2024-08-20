@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,18 +9,9 @@ public class AiFight : MonoBehaviour
     NavMeshAgent agent;
     SystemControl SC;
     private Animator animator;
-
-
     public Transform playerPosition;
     public GameObject Sc;
-    //setting distance
-    public float stoppingDistance = 5f;
-
     public GameObject monsterObject;
-
-
-    //current HP
-    //public float HpPercentage;
 
     void Start()
     {
@@ -27,7 +19,6 @@ public class AiFight : MonoBehaviour
         SC = Sc.GetComponent<SystemControl>();
         animator = monsterObject.GetComponent<Animator>();
     }
-
 
     void Update()
     {
@@ -37,119 +28,59 @@ public class AiFight : MonoBehaviour
 
         if (SC.state == BattleState.ENEMTURN)
         {
-            //set destination
-            agent.SetDestination(playerPosition.position);
-
-            //get distance
+            // get distance between monster and player
             float distance = Vector3.Distance(playerPosition.position, transform.position);
-            if (agent.remainingDistance > agent.stoppingDistance)
-            {
-                animator.SetBool("isMoving", true);
-            }
 
-
-            //when distance lower than setting distance
-            if (distance <= 5)
+            if (distance > 12)
             {
+                // when distance > 12, monster fly and shot fireball(doesn't move)
+                agent.SetDestination(transform.position); // stop moving
                 animator.SetBool("isMoving", false);
-                if (SC.roundTims % 3 == 1)
+                animator.SetTrigger("fireBallShot");
+
+                player.currentHP -= monster.AiDamage * 3/2;
+                // change turn
+                SC.state = BattleState.PLAYERTURN;
+            }
+            else
+            {
+                // whem distance <= 12, move to player and attack
+                agent.SetDestination(playerPosition.position); 
+                animator.SetBool("isMoving", true);
+
+                if (distance <= 5) 
                 {
-                    if (SC.hasUsedDefense == true)
+                    //stop moving
+                    animator.SetBool("isMoving", false);
+                    agent.SetDestination(transform.position);
+
+                    // choose attack way
+                    if (SC.roundTims % 3 == 1)
                     {
-                        //AI stop at 2f distance to player
-                        agent.SetDestination(transform.position);
-
-                        //AI attack
-                        player.currentHP -= monster.AiDamage / 2;
-
                         animator.SetTrigger("isAttack");
-
-                        SC.hasUsedDefense = false;
-                        //change turn to player
-                        SC.state = BattleState.PLAYERTURN;
                     }
-                    else
+                    else if (SC.roundTims % 3 == 2)
                     {
-                        //AI stop at 2f distance to player
-                        agent.SetDestination(transform.position);
-
-                        //AI attack
-                        player.currentHP -= monster.AiDamage;
-                        Debug.Log("currentHP: " + player.currentHP);
-                        animator.SetTrigger("isAttack");
-
-                        //change turn to player
-                        SC.state = BattleState.PLAYERTURN;
+                        animator.SetTrigger("isTailAttack");
                     }
-                }
-                else if (SC.roundTims % 3 == 2)
-                {
+                    else 
+                    {
+                        animator.SetTrigger("isFire");
+                    }
+                    
+
                     if (SC.hasUsedDefense == true)
                     {
-                        //AI stop at 2f distance to player
-                        agent.SetDestination(transform.position);
-
-                        //AI attack
                         player.currentHP -= monster.AiDamage / 2;
-                        // tail attack
-                        animator.SetTrigger("isTailAttack");
-
-                        SC.hasUsedDefense = false;
-                        //change turn to player
-                        SC.state = BattleState.PLAYERTURN;
                     }
                     else
                     {
-                        //AI stop at 2f distance to player
-                        agent.SetDestination(transform.position);
-
-                        //AI attack
                         player.currentHP -= monster.AiDamage;
-                        Debug.Log("currentHP: " + player.currentHP);
-                        animator.SetTrigger("isTailAttack");
-
-                        //change turn to player
-                        SC.state = BattleState.PLAYERTURN;
                     }
+                    // change turn
+                    SC.state = BattleState.PLAYERTURN;
                 }
-                else if (SC.roundTims % 3 == 0)
-                {
-                    if (SC.hasUsedDefense == true)
-                    {
-                        //AI stop at 2f distance to player
-                        agent.SetDestination(transform.position);
-
-                        //AI attack
-                        player.currentHP -= monster.AiDamage / 2;
-                        // here is third attack animation
-                        // change the trigger
-                        // I already test every
-                        // for now everything just find.
-                        animator.SetTrigger("fireBallShot");
-
-                        SC.hasUsedDefense = false;
-                        //change turn to player
-                        SC.state = BattleState.PLAYERTURN;
-                    }
-                    else
-                    {
-                        //AI stop at 2f distance to player
-                        agent.SetDestination(transform.position);
-
-                        //AI attack
-                        player.currentHP -= monster.AiDamage;
-                        Debug.Log("currentHP: " + player.currentHP);
-                        animator.SetTrigger("fireBallShot");
-
-                        //change turn to player
-                        SC.state = BattleState.PLAYERTURN;
-                    }
-                }
-
-
             }
         }
-
-
     }
 }
