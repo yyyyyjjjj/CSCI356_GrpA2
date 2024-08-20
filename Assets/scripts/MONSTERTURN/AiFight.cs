@@ -13,12 +13,14 @@ public class AiFight : MonoBehaviour
     public Transform playerPosition;
     public GameObject Sc;
     public GameObject monsterObject;
+    public GameObject playerObject;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
         animator = monsterObject.GetComponent<Animator>();
+        playerAnimator = playerObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -78,7 +80,7 @@ public class AiFight : MonoBehaviour
                     {
                         player.currentHP -= monster.AiDamage;
                     }
-                    playerAnimator.SetTrigger("isHit");
+                    playerAnimator.SetTrigger("GetHit");
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }

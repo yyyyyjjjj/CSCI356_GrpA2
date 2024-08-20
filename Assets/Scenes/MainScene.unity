@@ -2040,6 +2040,7 @@ MonoBehaviour:
   playerPosition: {fileID: 1547035613}
   Sc: {fileID: 979498097}
   monsterObject: {fileID: 399567747}
+  playerObject: {fileID: 0}
 --- !u!114 &399567760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6159,6 +6160,8 @@ MonoBehaviour:
   monsterHP: {fileID: 414003168}
   hasTakeDamage: 0
   animator: {fileID: 1547035621}
+  PlayerObject: {fileID: 0}
+  Playeranimator: {fileID: 1547035621}
   times: 0
 --- !u!1 &1844685808 stripped
 GameObject:
@@ -7140,8 +7143,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06246686, y: 0.8539565, z: -0.2875859, w: -0.4291276}
-  m_LocalPosition: {x: 0.000020103807, y: -0.000015258789, z: 0.000040497485}
+  m_LocalRotation: {x: -0.062466785, y: 0.8539566, z: -0.28758603, w: -0.4291274}
+  m_LocalPosition: {x: 0.000026805077, y: -0.000045776367, z: 0.000053996646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

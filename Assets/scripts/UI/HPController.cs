@@ -17,6 +17,8 @@ public class HPController : MonoBehaviour
 
 
     public Animator animator;
+    public GameObject PlayerObject;
+    public Animator Playeranimator;
 
     public bool times = false;
 
@@ -26,6 +28,9 @@ public class HPController : MonoBehaviour
     void Start()
     {
         sc = SC.GetComponent<SystemControl>();
+        Playeranimator = PlayerObject.GetComponent<Animator>();   
+
+
     }
 
     // Update is called once per frame
@@ -57,12 +62,12 @@ public class HPController : MonoBehaviour
 
         if (player.currentHP <= 0)
         {
-            animator.SetBool("Death", true);
+            Playeranimator.SetTrigger("Die");
 
         }
         else
         {
-            animator.SetBool("Death", false);
+            
         }
     }
     void monster1HpController()
