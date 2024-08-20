@@ -42,10 +42,16 @@ public class AiFight : MonoBehaviour
 
             //get distance
             float distance = Vector3.Distance(playerPosition.position, transform.position);
+            if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                animator.SetBool("isMoving", true);
+            }
+
 
             //when distance lower than setting distance
             if (distance <= 5)
             {
+                animator.SetBool("isMoving", false);
                 if (SC.roundTims % 3 == 1)
                 {
                     if (SC.hasUsedDefense == true)
@@ -75,7 +81,8 @@ public class AiFight : MonoBehaviour
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;
                     }
-                }else if (SC.roundTims % 3 == 2)
+                }
+                else if (SC.roundTims % 3 == 2)
                 {
                     if (SC.hasUsedDefense == true)
                     {
@@ -141,8 +148,8 @@ public class AiFight : MonoBehaviour
                         SC.state = BattleState.PLAYERTURN;
                     }
                 }
-                
-                
+
+
             }
         }
 
