@@ -31,6 +31,7 @@ public class SystemControl : MonoBehaviour
 
     // Other references
     public UIcontroller canvasController;
+    public UIcontroller popupController;
     public LayerMask groundLayer;
     public LayerMask UILayer;
     public NavMeshAgent agent;
@@ -111,6 +112,7 @@ public class SystemControl : MonoBehaviour
         {
             if (!hasRun)
             {
+                ShowPlayerTurnPopup();
                 MovePower.fillAmount = 1;
                 PlayerAgent.ResetPath();
                 CTB.totalDistance = 0;
@@ -156,6 +158,7 @@ public class SystemControl : MonoBehaviour
         else if (state == BattleState.ENEMTURN)
         {
             state = BattleState.PLAYERTURN;
+            ShowPlayerTurnPopup();
             hasUsedSkill = false; // Reset skill usage for the player's turn
         }
         CTB.totalDistance = 0;
@@ -197,6 +200,12 @@ public class SystemControl : MonoBehaviour
         isIdle = !hasRun;
         animator.SetBool("IsRunning", isRunning);
         animator.SetBool("isIdle", isIdle);
+    }
+
+    // Method to show popup at the start of player's turn
+    void ShowPlayerTurnPopup()
+    {
+        popupController.ShowCanvasForSeconds(1f);
     }
 
     // Method to handle skill usage
