@@ -42,10 +42,16 @@ public class AiFight : MonoBehaviour
 
             //get distance
             float distance = Vector3.Distance(playerPosition.position, transform.position);
+            if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                animator.SetBool("isMoving", true);
+            }
+
 
             //when distance lower than setting distance
             if (distance <= 5)
             {
+                animator.SetBool("isMoving", false);
                 if (SC.roundTims % 3 == 1)
                 {
                     if (SC.hasUsedDefense == true)
@@ -75,7 +81,8 @@ public class AiFight : MonoBehaviour
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;
                     }
-                }else if (SC.roundTims % 3 == 2)
+                }
+                else if (SC.roundTims % 3 == 2)
                 {
                     if (SC.hasUsedDefense == true)
                     {
@@ -88,7 +95,7 @@ public class AiFight : MonoBehaviour
                         // just change the trigger
                         // if you want we can add new damage to this attack
                         // but now we first done this
-                        animator.SetTrigger("isAttack");
+                        animator.SetTrigger("isTailAttack");
 
                         SC.hasUsedDefense = false;
                         //change turn to player
@@ -102,7 +109,7 @@ public class AiFight : MonoBehaviour
                         //AI attack
                         player.currentHP -= monster.AiDamage;
                         Debug.Log("currentHP: " + player.currentHP);
-                        animator.SetTrigger("isAttack");
+                        animator.SetTrigger("isTailAttack");
 
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;
@@ -141,8 +148,8 @@ public class AiFight : MonoBehaviour
                         SC.state = BattleState.PLAYERTURN;
                     }
                 }
-                
-                
+
+
             }
         }
 
