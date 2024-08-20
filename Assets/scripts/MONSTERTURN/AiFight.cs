@@ -8,6 +8,7 @@ public class AiFight : MonoBehaviour
     NavMeshAgent agent;
     SystemControl SC;
     private Animator animator;
+    private Animator Playeranimator;
 
 
     public Transform playerPosition;
@@ -16,6 +17,7 @@ public class AiFight : MonoBehaviour
     public float stoppingDistance = 5f;
 
     public GameObject monsterObject;
+    public GameObject playerObject;
 
 
     //current HP
@@ -26,6 +28,7 @@ public class AiFight : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
         animator = monsterObject.GetComponent<Animator>();
+        Playeranimator = playerObject.GetComponent<Animator>();
     }
 
 
@@ -71,6 +74,7 @@ public class AiFight : MonoBehaviour
                         player.currentHP -= monster.AiDamage;
                         Debug.Log("currentHP: " + player.currentHP);
                         animator.SetTrigger("isAttack");
+                        Playeranimator.SetTrigger("GetHit");
 
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;
@@ -89,6 +93,7 @@ public class AiFight : MonoBehaviour
                         // if you want we can add new damage to this attack
                         // but now we first done this
                         animator.SetTrigger("isAttack");
+                        Playeranimator.SetTrigger("GetHit");
 
                         SC.hasUsedDefense = false;
                         //change turn to player
@@ -103,7 +108,7 @@ public class AiFight : MonoBehaviour
                         player.currentHP -= monster.AiDamage;
                         Debug.Log("currentHP: " + player.currentHP);
                         animator.SetTrigger("isAttack");
-
+                        Playeranimator.SetTrigger("GetHit");
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;
                     }
@@ -122,6 +127,7 @@ public class AiFight : MonoBehaviour
                         // I already test every
                         // for now everything just find.
                         animator.SetTrigger("isAttack");
+                        Playeranimator.SetTrigger("GetHit");
 
                         SC.hasUsedDefense = false;
                         //change turn to player
@@ -136,6 +142,7 @@ public class AiFight : MonoBehaviour
                         player.currentHP -= monster.AiDamage;
                         Debug.Log("currentHP: " + player.currentHP);
                         animator.SetTrigger("isAttack");
+                        Playeranimator.SetTrigger("GetHit");
 
                         //change turn to player
                         SC.state = BattleState.PLAYERTURN;

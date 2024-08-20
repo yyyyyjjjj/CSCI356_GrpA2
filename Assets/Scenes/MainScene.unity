@@ -2040,6 +2040,7 @@ MonoBehaviour:
   Sc: {fileID: 979498097}
   stoppingDistance: 2
   monsterObject: {fileID: 399567747}
+  playerObject: {fileID: 1547035611}
 --- !u!114 &399567760
 MonoBehaviour:
   m_ObjectHideFlags: 0
