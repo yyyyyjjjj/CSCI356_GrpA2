@@ -13,11 +13,6 @@ public class AiFight : MonoBehaviour
     public Transform playerPosition;
     public GameObject Sc;
     public GameObject monsterObject;
-    public Transform firePoint;
-    public GameObject BossFireball;
-    public float fireballSpeed = 10f;
-    public bool isFlyShot = false;
-    public bool isGroundShot = false;
 
     void Start()
     {
@@ -43,23 +38,6 @@ public class AiFight : MonoBehaviour
                 agent.SetDestination(transform.position); // stop moving
                 animator.SetBool("isMoving", false);
                 animator.SetTrigger("fireBallShot");
-
-                isFlyShot = true;
-
-                if (isFlyShot == true)
-                {
-                    //shoot fireball
-                    GameObject bossFireball = Instantiate(BossFireball, firePoint.position, firePoint.rotation);
-
-                    Rigidbody rb = BossFireball.GetComponent<Rigidbody>();
-                    if(rb != null)
-                    {
-                        rb.velocity = firePoint.forward * fireballSpeed * Time.deltaTime;
-                    }
-
-                    //after shoot 
-                    isFlyShot = false;
-                }
 
                 player.currentHP -= monster.AiDamage * 3/2;
                 // change turn
@@ -89,23 +67,6 @@ public class AiFight : MonoBehaviour
                     else 
                     {
                         animator.SetTrigger("isFire");
-
-                        isGroundShot = true;
-
-                        if(isGroundShot == true)
-                        {
-                            //shoot fireball
-                            GameObject bossFireball = Instantiate(BossFireball, firePoint.position, firePoint.rotation);
-
-                            Rigidbody rb = BossFireball.GetComponent<Rigidbody>();
-                            if (rb != null)
-                            {
-                                rb.velocity = firePoint.forward * fireballSpeed * Time.deltaTime;
-                            }
-
-                            //after shoot 
-                            isGroundShot = false;
-                        }
                     }
                     
 
