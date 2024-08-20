@@ -9,6 +9,7 @@ public class AiFight : MonoBehaviour
     NavMeshAgent agent;
     SystemControl SC;
     private Animator animator;
+    public Animator playerAnimator;
     public Transform playerPosition;
     public GameObject Sc;
     public GameObject monsterObject;
@@ -77,6 +78,7 @@ public class AiFight : MonoBehaviour
                     {
                         player.currentHP -= monster.AiDamage;
                     }
+                    playerAnimator.SetTrigger("isHit");
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
