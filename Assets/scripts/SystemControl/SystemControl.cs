@@ -72,6 +72,7 @@ public class SystemControl : MonoBehaviour
         EndRdButton.onClick.AddListener(OnClick);
         animator = player.GetComponent<Animator>();
         animator.ResetTrigger("Attack");
+        animator.ResetTrigger("NAttack");
 
     }
 
@@ -219,12 +220,12 @@ public class SystemControl : MonoBehaviour
         // if distance smaller than 2f
         if (distance1 <= 5f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("NAttack");
             // Mark that the skill has been used
             hasUsedSkill = true;
         }else
         {
-            animator.ResetTrigger("Attack");
+            animator.ResetTrigger("NAttack");
         }
     }
 
@@ -233,6 +234,7 @@ public class SystemControl : MonoBehaviour
         if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             hasUsedDefense = true;
+            animator.SetTrigger("defense");
         }
     }
 
@@ -251,6 +253,7 @@ public class SystemControl : MonoBehaviour
             if (rb != null)
             {
                 rb.velocity = firePosition.forward * fireballSpeed;
+                animator.SetTrigger("Attack");
             }
             hasUsedFireBall = true;
         }
@@ -270,6 +273,7 @@ public class SystemControl : MonoBehaviour
             if (rb != null)
             {
                 rb.velocity = firePosition.forward * lightningSpeed;
+                animator.SetTrigger("Attack");
             }
             hasUsedLightning = true;
         }

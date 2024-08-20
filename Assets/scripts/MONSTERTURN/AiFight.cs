@@ -78,7 +78,7 @@ public class AiFight : MonoBehaviour
                     {
                         player.currentHP -= monster.AiDamage;
                     }
-                    playerAnimator.SetTrigger("isHit");
+                    playerAnimator.SetTrigger("GetHit");
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
