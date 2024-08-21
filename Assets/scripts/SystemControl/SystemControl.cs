@@ -243,7 +243,11 @@ public class SystemControl : MonoBehaviour
             if (rb != null)
             {
                 rb.velocity = firePosition.forward * fireballSpeed;
+<<<<<<< Updated upstream
                 animator.SetTrigger("NAttack");
+=======
+                animator.SetTrigger("Attack");
+>>>>>>> Stashed changes
             }
             hasUsedFireBall = true;
         }
@@ -263,7 +267,11 @@ public class SystemControl : MonoBehaviour
             if (rb != null)
             {
                 rb.velocity = firePosition.forward * lightningSpeed;
+<<<<<<< Updated upstream
                 animator.SetTrigger("NAttack");
+=======
+                animator.SetTrigger("Attack");
+>>>>>>> Stashed changes
             }
             hasUsedLightning = true;
         }
