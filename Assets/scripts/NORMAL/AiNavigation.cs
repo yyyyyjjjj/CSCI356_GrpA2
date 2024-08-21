@@ -11,7 +11,6 @@ public class AiNavigation : MonoBehaviour
     NavMeshAgent agent;
 
     public Transform[] target; 
-    private int currentTargetIndex = 0;  
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
