@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32107174, g: 0.21133253, b: 0.40438062, a: 1}
+  m_IndirectSpecularColor: {r: 0.32097125, g: 0.21131825, b: 0.40435025, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6485,10 +6485,7 @@ MonoBehaviour:
   playerHP: {fileID: 484965179}
   monsterHP: {fileID: 414003168}
   hasTakeDamage: 0
-  player: {fileID: 1547035611}
-  playerAnimation: {fileID: 1547035621}
-  monster: {fileID: 399567747}
-  monsterAnimation: {fileID: 399567766}
+  animator: {fileID: 1547035621}
   times: 0
 --- !u!1 &1844685808 stripped
 GameObject:
@@ -7470,8 +7467,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06246686, y: 0.8539565, z: -0.2875859, w: -0.4291276}
-  m_LocalPosition: {x: 0.000013402539, y: -0.000015258789, z: 0.000020248743}
+  m_LocalRotation: {x: -0.062466893, y: 0.8539565, z: -0.28758597, w: -0.42912766}
+  m_LocalPosition: {x: 0.000020103807, y: -0.000015258789, z: 0.000040497485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
