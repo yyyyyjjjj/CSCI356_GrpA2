@@ -217,7 +217,7 @@ public class SystemControl : MonoBehaviour
         float distance1 = Vector3.Distance(monsterPosition1.position, playerPostion.position);
 
         // if distance smaller than 2f
-        if (distance1 <= 5f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
+        if (distance1 <= 8f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             animator.SetTrigger("Attack");
             // Mark that the skill has been used

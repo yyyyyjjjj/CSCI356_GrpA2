@@ -20,7 +20,9 @@ public class HPController : MonoBehaviour
 
     public bool times = false;
 
-    
+    float HpPercentage;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,7 @@ public class HPController : MonoBehaviour
 
         // Update HP UI percentage
         
-        float HpPercentage = player.currentHP / player.maxHP;
+        HpPercentage = player.currentHP / player.maxHP;
         playerHP.fillAmount = HpPercentage;
 
         if (sc.hasHeal == true && times == false)

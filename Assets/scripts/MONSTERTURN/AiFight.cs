@@ -34,14 +34,29 @@ public class AiFight : MonoBehaviour
 
             if (distance > 12)
             {
-                // when distance > 12, monster fly and shot fireball(doesn't move)
-                agent.SetDestination(transform.position); // stop moving
-                animator.SetBool("isMoving", false);
-                animator.SetTrigger("fireBallShot");
+                if (SC.hasUsedDefense == true)
+                {
+                    // when distance > 12, monster fly and shot fireball(doesn't move)
+                    agent.SetDestination(transform.position); // stop moving
+                    animator.SetBool("isMoving", false);
+                    animator.SetTrigger("fireBallShot");
 
-                player.currentHP -= monster.AiDamage * 3/2;
-                // change turn
-                SC.state = BattleState.PLAYERTURN;
+                    player.currentHP -= monster.AiDamage * 3 / 4;
+                    SC.hasUsedDefense = false;
+                    // change turn
+                    SC.state = BattleState.PLAYERTURN;
+
+                }else
+                {
+                    agent.SetDestination(transform.position); // stop moving
+                    animator.SetBool("isMoving", false);
+                    animator.SetTrigger("fireBallShot");
+
+                    player.currentHP -= monster.AiDamage * 3 / 2;
+                    // change turn
+                    SC.state = BattleState.PLAYERTURN;
+                }
+                
             }
             else
             {
