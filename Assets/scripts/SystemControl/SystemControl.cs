@@ -109,7 +109,7 @@ public class SystemControl : MonoBehaviour
         }
 
         if (state == BattleState.PLAYERTURN)
-        {
+        {    
             if (!hasRun)
             {
                 ShowPlayerTurnPopup();
@@ -154,12 +154,6 @@ public class SystemControl : MonoBehaviour
             hc.times = false;
             roundTims += 1;
             AV.oneTimes = false;
-        }
-        else if (state == BattleState.ENEMTURN)
-        {
-            state = BattleState.PLAYERTURN;
-            ShowPlayerTurnPopup();
-            hasUsedSkill = false; // Reset skill usage for the player's turn
         }
         CTB.totalDistance = 0;
     }
@@ -280,8 +274,7 @@ public class SystemControl : MonoBehaviour
     {
         if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false && hasHeal == false)
         {
-            hasHeal = true;
-            
+            hasHeal = true;            
         }
     }
 

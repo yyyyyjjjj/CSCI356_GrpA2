@@ -14,6 +14,13 @@ public class AiFight : MonoBehaviour
     public GameObject Sc;
     public GameObject monsterObject;
 
+    public Transform monsterPosition1;
+    public Transform playerPostion;
+
+    public GameObject fireballPrefab;
+    public Transform firePosition;
+
+    public float fireballSpeed = 20f;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -36,6 +43,7 @@ public class AiFight : MonoBehaviour
             {
                 if (SC.hasUsedDefense == true)
                 {
+                    fireball();
                     // when distance > 12, monster fly and shot fireball(doesn't move)
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
@@ -48,10 +56,11 @@ public class AiFight : MonoBehaviour
 
                 }else
                 {
+                    fireball();
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
                     animator.SetTrigger("fireBallShot");
-
+                    SC.hasUsedDefense = false;
                     player.currentHP -= monster.AiDamage * 3 / 2;
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
@@ -88,6 +97,7 @@ public class AiFight : MonoBehaviour
                     if (SC.hasUsedDefense == true)
                     {
                         player.currentHP -= monster.AiDamage / 2;
+                        SC.hasUsedDefense = false;
                     }
                     else
                     {
@@ -100,4 +110,20 @@ public class AiFight : MonoBehaviour
             }
         }
     }
+
+    
+    void fireball()
+    {
+        float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
+
+        GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
+
+        firePosition.transform.LookAt(playerPostion.position);
+
+        Rigidbody rb = fireball.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = firePosition.forward * fireballSpeed;
+        }
+    } 
 }

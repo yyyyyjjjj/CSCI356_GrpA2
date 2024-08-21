@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class monsterFace : MonoBehaviour
 {
+    SystemControl sc;
+    public GameObject SC;
 
+    public Transform player;
     private void Update()
     {
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        sc = SC.GetComponent<SystemControl>();
+        if (sc.state == BattleState.ENEMTURN)
+        {
+            transform.LookAt(player);
+        }
     }
 }
