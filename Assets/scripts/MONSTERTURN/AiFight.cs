@@ -1,3 +1,4 @@
+using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -39,11 +40,20 @@ public class AiFight : MonoBehaviour
             // get distance between monster and player
             float distance = Vector3.Distance(playerPosition.position, transform.position);
 
+            // if player got lightning...cannot move 
+            if (SC.stop == true)
+            {
+                Debug.Log("stop!");
+                SC.stop = false;
+                SC.state = BattleState.PLAYERTURN;
+                return;
+            }
+
             if (distance > 12)
             {
                 if (SC.hasUsedDefense == true)
                 {
-                    fireball();
+                    StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
                     // when distance > 12, monster fly and shot fireball(doesn't move)
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
@@ -56,7 +66,7 @@ public class AiFight : MonoBehaviour
 
                 }else
                 {
-                    fireball();
+                    StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
                     animator.SetTrigger("fireBallShot");
@@ -114,8 +124,6 @@ public class AiFight : MonoBehaviour
     
     void fireball()
     {
-        float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
-
         GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
 
         firePosition.transform.LookAt(playerPostion.position);
@@ -125,5 +133,12 @@ public class AiFight : MonoBehaviour
         {
             rb.velocity = firePosition.forward * fireballSpeed;
         }
-    } 
+    }
+
+    IEnumerator ExecuteAfterDelay(float delay, System.Action method)
+    {
+        yield return new WaitForSeconds(delay);
+
+        method?.Invoke();
+    }
 }

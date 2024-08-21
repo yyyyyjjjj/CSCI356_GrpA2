@@ -48,6 +48,7 @@ public class SystemControl : MonoBehaviour
     public GameObject HC;
     public HPController hc;
 
+    public MonsterData monster;
     //monster position
     public Transform monsterPosition1;
     public Transform playerPostion;
@@ -66,6 +67,8 @@ public class SystemControl : MonoBehaviour
 
     //heal
     public bool hasHeal = false;
+
+    public int attackTimes = 0;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -77,12 +80,13 @@ public class SystemControl : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(state);
         AV = player.GetComponent<attackVoice>();
         hc = HC.GetComponent<HPController>();
         // Update references
         CTB = player.GetComponent<ClickToMoveBattle>();
         MovePower = moveUi.GetComponent<Image>();
-
+        monster = enemy.GetComponent<MonsterData>();
 
         // Check if the player is moving
         bool isPlayerMoving = PlayerAgent.velocity.magnitude > 0.1f;
@@ -154,6 +158,11 @@ public class SystemControl : MonoBehaviour
             hc.times = false;
             roundTims += 1;
             AV.oneTimes = false;
+            if (attackTimes >= 2)
+            {
+                //burn
+                monster.takenDamage(2);
+            }
         }
         CTB.totalDistance = 0;
     }
@@ -213,12 +222,12 @@ public class SystemControl : MonoBehaviour
         // if distance smaller than 2f
         if (distance1 <= 8f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("NAttack");
             // Mark that the skill has been used
             hasUsedSkill = true;
         }else
         {
-            animator.ResetTrigger("Attack");
+            animator.ResetTrigger("NAttack");
         }
     }
 
@@ -227,6 +236,7 @@ public class SystemControl : MonoBehaviour
         if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             hasUsedDefense = true;
+            animator.SetTrigger("defense");
         }
     }
 
@@ -245,6 +255,8 @@ public class SystemControl : MonoBehaviour
             if (rb != null)
             {
                 rb.velocity = firePosition.forward * fireballSpeed;
+                animator.SetTrigger("Attack");
+                attackTimes += 1;                
             }
             hasUsedFireBall = true;
         }
@@ -252,10 +264,12 @@ public class SystemControl : MonoBehaviour
 
     public GameObject lightPrefab;
     public float lightningSpeed = 20f;
+    public bool stop = false;
+    float Pvalue = 0.5f;
     public void Lightning()
     {
         float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
-
+        float randomValue = Random.value;        
 
         if (distance <= 20f && hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
@@ -264,6 +278,12 @@ public class SystemControl : MonoBehaviour
             if (rb != null)
             {
                 rb.velocity = firePosition.forward * lightningSpeed;
+                animator.SetTrigger("Attack");
+                if (randomValue >= Pvalue)
+                {                                                       
+                    stop = true;
+                    Pvalue += 0.3f;
+                }
             }
             hasUsedLightning = true;
         }
