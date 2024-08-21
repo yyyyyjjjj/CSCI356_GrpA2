@@ -2073,7 +2073,7 @@ MonoBehaviour:
   monsterObject: {fileID: 399567747}
   monsterPosition1: {fileID: 399567764}
   playerPostion: {fileID: 1547035613}
-  fireballPrefab: {fileID: 3486844822488063037, guid: 6604680a207e3304093c9721b02a86c2, type: 3}
+  fireballPrefab: {fileID: 3486844822488063037, guid: a69984dae115c3f489c6d1a9f59f0c75, type: 3}
   firePosition: {fileID: 162207586}
   fireballSpeed: 20
 --- !u!114 &399567760
@@ -7491,7 +7491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.028695555, y: 0.882355, z: -0.30863085, w: -0.35408098}
+  m_LocalRotation: {x: -0.028695555, y: 0.882355, z: -0.30863082, w: -0.35408098}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
