@@ -40,6 +40,15 @@ public class AiFight : MonoBehaviour
             // get distance between monster and player
             float distance = Vector3.Distance(playerPosition.position, transform.position);
 
+            // if player got lightning...cannot move 
+            if (SC.stop == true)
+            {
+                Debug.Log("stop!");
+                SC.stop = false;
+                SC.state = BattleState.PLAYERTURN;
+                return;
+            }
+
             if (distance > 12)
             {
                 if (SC.hasUsedDefense == true)
