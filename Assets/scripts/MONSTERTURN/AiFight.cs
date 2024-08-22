@@ -21,6 +21,7 @@ public class AiFight : MonoBehaviour
 
     public GameObject fireballPrefab;
     public Transform firePosition;
+    public GameObject warningSign;
 
     public float fireballSpeed = 20f;
     void Start()
@@ -106,6 +107,7 @@ public class AiFight : MonoBehaviour
                         animator.SetBool("isFlying", true);
                         monsterEffect.SetActive(true);
                         monster.AiDamage *= 3;
+                        warningSign.SetActive(true);
                     }
                     else
                     {
@@ -113,6 +115,7 @@ public class AiFight : MonoBehaviour
                         animator.SetBool("isFlying", false);
                         animator.SetTrigger("fireBallShot");
                         monsterEffect.SetActive(false);
+                        warningSign.SetActive(false);
                     }
 
 
