@@ -14,6 +14,7 @@ public class AiFight : MonoBehaviour
     public Transform playerPosition;
     public GameObject Sc;
     public GameObject monsterObject;
+    public GameObject monsterEffect;
 
     public Transform monsterPosition1;
     public Transform playerPostion;
@@ -103,17 +104,19 @@ public class AiFight : MonoBehaviour
                     {
                         //animator.SetTrigger("isFire");
                         animator.SetBool("isFlying",true);
+                        monsterEffect.SetActive(true);
                     }
                     else
                     {
+                        StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
                         animator.SetBool("isFlying",false);
                         animator.SetTrigger("fireBallShot");
+                        monsterEffect.SetActive(false);
                     }
 
 
                     if (SC.roundTims % 4 != 3)
                     {
-                        StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
                         if (SC.hasUsedDefense == true)
                         {
                             player.currentHP -= monster.AiDamage / 2;
