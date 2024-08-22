@@ -64,7 +64,8 @@ public class AiFight : MonoBehaviour
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
 
-                }else
+                }
+                else
                 {
                     StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
                     agent.SetDestination(transform.position); // stop moving
@@ -75,45 +76,53 @@ public class AiFight : MonoBehaviour
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
-                
+
             }
             else
             {
                 // whem distance <= 12, move to player and attack
-                agent.SetDestination(playerPosition.position); 
+                agent.SetDestination(playerPosition.position);
                 animator.SetBool("isMoving", true);
 
-                if (distance <= 5) 
+                if (distance <= 5)
                 {
                     //stop moving
                     animator.SetBool("isMoving", false);
                     agent.SetDestination(transform.position);
 
                     // choose attack way
-                    if (SC.roundTims % 3 == 1)
+                    if (SC.roundTims % 4 == 1)
                     {
                         animator.SetTrigger("isAttack");
                     }
-                    else if (SC.roundTims % 3 == 2)
+                    else if (SC.roundTims % 4 == 2)
                     {
                         animator.SetTrigger("isTailAttack");
                     }
-                    else 
+                    else if (SC.roundTims % 4 == 3)
                     {
-                        animator.SetTrigger("isFire");
-                    }
-                    
-
-                    if (SC.hasUsedDefense == true)
-                    {
-                        player.currentHP -= monster.AiDamage / 2;
-                        SC.hasUsedDefense = false;
+                        //animator.SetTrigger("isFire");
                     }
                     else
                     {
-                        player.currentHP -= monster.AiDamage;
+                        animator.SetTrigger("isFire");
                     }
-                    playerAnimator.SetTrigger("isHit");
+
+
+                    if (SC.roundTims % 4 != 3)
+                    {
+                        if (SC.hasUsedDefense == true)
+                        {
+                            player.currentHP -= monster.AiDamage / 2;
+                            SC.hasUsedDefense = false;
+                        }
+                        else
+                        {
+                            player.currentHP -= monster.AiDamage;
+                        }
+                        playerAnimator.SetTrigger("isHit");
+                    }
+                    
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
@@ -121,7 +130,7 @@ public class AiFight : MonoBehaviour
         }
     }
 
-    
+
     void fireball()
     {
         GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
