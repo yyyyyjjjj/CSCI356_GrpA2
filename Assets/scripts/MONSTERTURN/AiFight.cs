@@ -22,6 +22,7 @@ public class AiFight : MonoBehaviour
     public GameObject fireballPrefab;
     public Transform firePosition;
     public GameObject warningSign;
+    public GameObject aoePrefab;
 
     public float fireballSpeed = 20f;
     void Start()
@@ -111,7 +112,8 @@ public class AiFight : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                        //StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                        StartCoroutine(ExecuteAfterDelay(2.0f, bossAttack));
                         animator.SetBool("isFlying", false);
                         animator.SetTrigger("fireBallShot");
                         monsterEffect.SetActive(false);
@@ -124,7 +126,6 @@ public class AiFight : MonoBehaviour
                         if (SC.hasUsedDefense == true)
                         {
                             player.currentHP -= monster.AiDamage / 2;
-                            SC.hasUsedDefense = false;
                         }
                         else
                         {
@@ -133,6 +134,7 @@ public class AiFight : MonoBehaviour
                         playerAnimator.SetTrigger("isHit");
                         monster.AiDamage = 5;  //reset monster damage;
                     }
+                    SC.hasUsedDefense = false;
 
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
@@ -153,6 +155,15 @@ public class AiFight : MonoBehaviour
         {
             rb.velocity = firePosition.forward * fireballSpeed;
         }
+    }
+
+    void bossAttack(){
+        aoePrefab.SetActive(true);
+        StartCoroutine(ExecuteAfterDelay(5.0f, bossAttackEnd));
+    }
+
+    void bossAttackEnd(){
+        aoePrefab.SetActive(false);
     }
 
     IEnumerator ExecuteAfterDelay(float delay, System.Action method)
