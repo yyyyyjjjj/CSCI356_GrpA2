@@ -45,7 +45,7 @@ public class AiTestPlayer : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 SC.state = BattleState.BATTLESTART;
-                animator.SetTrigger("startBattle");
+                //animator.SetTrigger("startBattle");
             }
         }
     }
