@@ -103,13 +103,14 @@ public class AiFight : MonoBehaviour
                     else if (SC.roundTims % 4 == 3)
                     {
                         //animator.SetTrigger("isFire");
-                        animator.SetBool("isFlying",true);
+                        animator.SetBool("isFlying", true);
                         monsterEffect.SetActive(true);
+                        monster.AiDamage *= 3;
                     }
                     else
                     {
                         StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
-                        animator.SetBool("isFlying",false);
+                        animator.SetBool("isFlying", false);
                         animator.SetTrigger("fireBallShot");
                         monsterEffect.SetActive(false);
                     }
@@ -127,6 +128,7 @@ public class AiFight : MonoBehaviour
                             player.currentHP -= monster.AiDamage;
                         }
                         playerAnimator.SetTrigger("isHit");
+                        monster.AiDamage = 5;  //reset monster damage;
                     }
 
                     // change turn
