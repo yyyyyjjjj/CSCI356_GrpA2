@@ -53,11 +53,11 @@ public class AiFight : MonoBehaviour
             {
                 if (SC.hasUsedDefense == true)
                 {
-                    StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                    StartCoroutine(ExecuteAfterDelay(0.5f, fireball));
                     // when distance > 12, monster fly and shot fireball(doesn't move)
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
-                    animator.SetTrigger("fireBallShot");
+                    animator.SetTrigger("isFire");
 
                     player.currentHP -= monster.AiDamage * 3 / 4;
                     SC.hasUsedDefense = false;
@@ -67,10 +67,10 @@ public class AiFight : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                    StartCoroutine(ExecuteAfterDelay(0.5f, fireball));
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
-                    animator.SetTrigger("fireBallShot");
+                    animator.SetTrigger("isFire");
                     SC.hasUsedDefense = false;
                     player.currentHP -= monster.AiDamage * 3 / 2;
                     // change turn
@@ -102,15 +102,18 @@ public class AiFight : MonoBehaviour
                     else if (SC.roundTims % 4 == 3)
                     {
                         //animator.SetTrigger("isFire");
+                        animator.SetBool("isFlying",true);
                     }
                     else
                     {
-                        animator.SetTrigger("isFire");
+                        animator.SetBool("isFlying",false);
+                        animator.SetTrigger("fireBallShot");
                     }
 
 
                     if (SC.roundTims % 4 != 3)
                     {
+                        StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
                         if (SC.hasUsedDefense == true)
                         {
                             player.currentHP -= monster.AiDamage / 2;
@@ -122,7 +125,7 @@ public class AiFight : MonoBehaviour
                         }
                         playerAnimator.SetTrigger("isHit");
                     }
-                    
+
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
