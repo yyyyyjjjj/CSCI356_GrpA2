@@ -15,11 +15,19 @@ public class AiFight3 : MonoBehaviour
     public GameObject Sc;
     public GameObject monsterObject;
 
+    // Audio related variables
+    public AudioClip attackSound1;
+    public AudioClip attackSound2;
+    private AudioSource audioSource;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
         animator = monsterObject.GetComponent<Animator>();
+
+        // Initialize the AudioSource component
+        audioSource = monsterObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -57,10 +65,12 @@ public class AiFight3 : MonoBehaviour
                 if (SC.roundTims % 3 == 1)
                 {
                     animator.SetTrigger("isAttack1");
+                    PlaySound(attackSound1);
                 }
                 else if (SC.roundTims % 3 == 2)
                 {
                     animator.SetTrigger("isAttack2");
+                    PlaySound(attackSound2);
                 }
 
 
@@ -89,5 +99,13 @@ public class AiFight3 : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         method?.Invoke();
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }
