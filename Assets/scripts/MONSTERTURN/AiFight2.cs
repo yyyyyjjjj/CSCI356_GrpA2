@@ -16,11 +16,20 @@ public class AiFight2 : MonoBehaviour
     public GameObject monsterObject;
     public GameObject aoePrefab;
 
+    // Audio related variables
+    public AudioClip wolfSnarl;
+    public AudioClip wolfGrowl;
+    public AudioClip wolfAttack;
+    private AudioSource audioSource;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
         animator = monsterObject.GetComponent<Animator>();
+
+        // Initialize the AudioSource component
+        audioSource = monsterObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -58,14 +67,17 @@ public class AiFight2 : MonoBehaviour
                 if (SC.roundTims % 3 == 1)
                 {
                     animator.SetTrigger("isAttack1");
+                    PlaySound(wolfSnarl);
                 }
                 else if (SC.roundTims % 3 == 2)
                 {
                     animator.SetTrigger("isAttack2");
+                    PlaySound(wolfGrowl);
                 }
                 else if (SC.roundTims % 3 == 0)
                 {
                     animator.SetTrigger("isAttack3");
+                    PlaySound(wolfAttack);
                     StartCoroutine(ExecuteAfterDelay(1.2f, bossAttack));
                     monster.AiDamage *= 2;
                 }
@@ -108,5 +120,13 @@ public class AiFight2 : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         method?.Invoke();
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }

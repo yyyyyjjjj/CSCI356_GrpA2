@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32107174, g: 0.21133253, b: 0.40438062, a: 1}
+  m_IndirectSpecularColor: {r: 0.32097125, g: 0.21131825, b: 0.40435025, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7135,6 +7135,9 @@ MonoBehaviour:
   Sc: {fileID: 979498097}
   monsterObject: {fileID: 1388198889}
   aoePrefab: {fileID: 560733912}
+  wolfSnarl: {fileID: 8300000, guid: cb885e153e127467fbae397902dfc164, type: 3}
+  wolfGrowl: {fileID: 8300000, guid: 1de1c78c8d1544b12a6a1bc75a2cea7f, type: 3}
+  wolfAttack: {fileID: 8300000, guid: 2405b36e0083243078811b59ccf3f8fe, type: 3}
 --- !u!1 &1402658470
 GameObject:
   m_ObjectHideFlags: 0
@@ -7436,7 +7439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Win !
+  m_text: Victory!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 648d8fbf64aba43b39170ccc19505335, type: 2}
   m_sharedMaterial: {fileID: 5929559670895648503, guid: 648d8fbf64aba43b39170ccc19505335, type: 2}
@@ -10659,7 +10662,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.22653207, w: -0.5975807}
+  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.2265321, w: -0.5975807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
