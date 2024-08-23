@@ -66,7 +66,7 @@ public class AiFight2 : MonoBehaviour
                 else if (SC.roundTims % 3 == 0)
                 {
                     animator.SetTrigger("isAttack3");
-                    //monsterEffect.SetActive(true);
+                    StartCoroutine(ExecuteAfterDelay(1.2f, bossAttack));
                     monster.AiDamage *= 2;
                 }
 
@@ -89,6 +89,18 @@ public class AiFight2 : MonoBehaviour
             }
 
         }
+    }
+
+    void bossAttack()
+    {
+        Debug.Log("This method");
+        aoePrefab.SetActive(true);
+        StartCoroutine(ExecuteAfterDelay(5.0f, bossAttackEnd));
+    }
+
+    void bossAttackEnd()
+    {
+        aoePrefab.SetActive(false);
     }
 
     IEnumerator ExecuteAfterDelay(float delay, System.Action method)
