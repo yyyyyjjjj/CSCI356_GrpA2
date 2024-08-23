@@ -13,7 +13,7 @@ public class lightning : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        monsterData.takenDamage(4);
+        monsterData.takenDamage(2);
         Destroy(gameObject);
     }
 }

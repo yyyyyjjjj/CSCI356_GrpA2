@@ -69,6 +69,9 @@ public class SystemControl : MonoBehaviour
     public bool hasHeal = false;
 
     public int attackTimes = 0;
+
+    //state
+    public GameObject fire;
     private void Start()
     {
         state = BattleState.NORMAL;
@@ -90,6 +93,20 @@ public class SystemControl : MonoBehaviour
 
         // Check if the player is moving
         bool isPlayerMoving = PlayerAgent.velocity.magnitude > 0.1f;
+
+        //fire state
+        if (attackTimes >= 2)
+        {
+            fire.SetActive(true);
+        }
+        //lightning state
+        if (stop == true)
+        {
+            lightning.SetActive(true);
+        }else
+        {
+            lightning.SetActive(false);
+        }
 
         // Handle different states
         if (state == BattleState.NORMAL)
@@ -269,6 +286,9 @@ public class SystemControl : MonoBehaviour
     public float lightningSpeed = 20f;
     public bool stop = false;
     float Pvalue = 0.5f;
+
+    //lightning
+    public GameObject lightning;
     public void Lightning()
     {
         float distance = Vector3.Distance(monsterPosition1.position, playerPostion.position);
@@ -284,7 +304,7 @@ public class SystemControl : MonoBehaviour
                 animator.SetTrigger("Attack");
                 if (randomValue >= Pvalue)
                 {                                                       
-                    stop = true;
+                    stop = true;                    
                     Pvalue += 0.3f;
                 }
             }
