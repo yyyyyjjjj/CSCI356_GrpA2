@@ -14,12 +14,15 @@ public class AiFight : MonoBehaviour
     public Transform playerPosition;
     public GameObject Sc;
     public GameObject monsterObject;
+    public GameObject monsterEffect;
 
     public Transform monsterPosition1;
     public Transform playerPostion;
 
     public GameObject fireballPrefab;
     public Transform firePosition;
+    public GameObject warningSign;
+    public GameObject aoePrefab;
 
     public float fireballSpeed = 20f;
     void Start()
@@ -53,67 +56,86 @@ public class AiFight : MonoBehaviour
             {
                 if (SC.hasUsedDefense == true)
                 {
-                    StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                    StartCoroutine(ExecuteAfterDelay(0.5f, fireball));
                     // when distance > 12, monster fly and shot fireball(doesn't move)
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
-                    animator.SetTrigger("fireBallShot");
+                    animator.SetTrigger("isFire");
 
                     player.currentHP -= monster.AiDamage * 3 / 4;
                     SC.hasUsedDefense = false;
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
 
-                }else
+                }
+                else
                 {
-                    StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                    StartCoroutine(ExecuteAfterDelay(0.5f, fireball));
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
-                    animator.SetTrigger("fireBallShot");
+                    animator.SetTrigger("isFire");
                     SC.hasUsedDefense = false;
                     player.currentHP -= monster.AiDamage * 3 / 2;
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
-                
+
             }
             else
             {
                 // whem distance <= 12, move to player and attack
-                agent.SetDestination(playerPosition.position); 
+                agent.SetDestination(playerPosition.position);
                 animator.SetBool("isMoving", true);
 
-                if (distance <= 5) 
+                if (distance <= 5)
                 {
                     //stop moving
                     animator.SetBool("isMoving", false);
                     agent.SetDestination(transform.position);
 
                     // choose attack way
-                    if (SC.roundTims % 3 == 1)
+                    if (SC.roundTims % 4 == 1)
                     {
                         animator.SetTrigger("isAttack");
                     }
-                    else if (SC.roundTims % 3 == 2)
+                    else if (SC.roundTims % 4 == 2)
                     {
                         animator.SetTrigger("isTailAttack");
                     }
-                    else 
+                    else if (SC.roundTims % 4 == 3)
                     {
-                        animator.SetTrigger("isFire");
-                    }
-                    
-
-                    if (SC.hasUsedDefense == true)
-                    {
-                        player.currentHP -= monster.AiDamage / 2;
-                        SC.hasUsedDefense = false;
+                        //animator.SetTrigger("isFire");
+                        animator.SetBool("isFlying", true);
+                        monsterEffect.SetActive(true);
+                        monster.AiDamage *= 3;
+                        warningSign.SetActive(true);
                     }
                     else
                     {
-                        player.currentHP -= monster.AiDamage;
+                        //StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
+                        StartCoroutine(ExecuteAfterDelay(2.0f, bossAttack));
+                        animator.SetBool("isFlying", false);
+                        animator.SetTrigger("fireBallShot");
+                        monsterEffect.SetActive(false);
+                        warningSign.SetActive(false);
                     }
-                    playerAnimator.SetTrigger("isHit");
+
+
+                    if (SC.roundTims % 4 != 3)
+                    {
+                        if (SC.hasUsedDefense == true)
+                        {
+                            player.currentHP -= monster.AiDamage / 2;
+                        }
+                        else
+                        {
+                            player.currentHP -= monster.AiDamage;
+                        }
+                        playerAnimator.SetTrigger("isHit");
+                        monster.AiDamage = 5;  //reset monster damage;
+                    }
+                    SC.hasUsedDefense = false;
+
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
                 }
@@ -121,7 +143,7 @@ public class AiFight : MonoBehaviour
         }
     }
 
-    
+
     void fireball()
     {
         GameObject fireball = Instantiate(fireballPrefab, firePosition.position, firePosition.rotation);
@@ -133,6 +155,17 @@ public class AiFight : MonoBehaviour
         {
             rb.velocity = firePosition.forward * fireballSpeed;
         }
+    }
+
+    void bossAttack()
+    {
+        aoePrefab.SetActive(true);
+        StartCoroutine(ExecuteAfterDelay(5.0f, bossAttackEnd));
+    }
+
+    void bossAttackEnd()
+    {
+        aoePrefab.SetActive(false);
     }
 
     IEnumerator ExecuteAfterDelay(float delay, System.Action method)
