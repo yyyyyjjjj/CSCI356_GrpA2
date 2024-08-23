@@ -10,7 +10,7 @@ public class Win : MonoBehaviour
 
     private void Start()
     {
-        WIN.onClick.AddListener(OnbuttonClick);
+        //WIN.onClick.AddListener(OnbuttonClick);
         restart.enabled = false;
     }
     // Update is called once per frame
@@ -25,8 +25,8 @@ public class Win : MonoBehaviour
         }
     }
 
-    public void OnbuttonClick()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }
+    // public void OnbuttonClick()
+    // {
+    //     UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    // }
 }
