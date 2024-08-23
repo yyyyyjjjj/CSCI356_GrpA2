@@ -7677,7 +7677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: NEXT STAGE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 648d8fbf64aba43b39170ccc19505335, type: 2}
   m_sharedMaterial: {fileID: 5929559670895648503, guid: 648d8fbf64aba43b39170ccc19505335, type: 2}
@@ -8717,7 +8717,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 6, y: 10}
-  m_SizeDelta: {x: 120, y: 40}
+  m_SizeDelta: {x: 130.7028, y: 52.0055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1724558349
 MonoBehaviour:
@@ -8776,7 +8776,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1724558351}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 9e8306830f5474745903c9150de03e54, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1724558351
 MonoBehaviour:
   m_ObjectHideFlags: 0

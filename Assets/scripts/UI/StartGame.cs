@@ -7,6 +7,21 @@ public class StartGame : MonoBehaviour
 {
     public void LoadGame()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("MountainScene");
+    }
+
+    public void LoadScene2()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void LoadScene3()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void LoadScene4()
+    {
+        SceneManager.LoadScene(4);
     }
 }
