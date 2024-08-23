@@ -648,7 +648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29900612}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14269625, y: 0.7557899, z: -0.2265321, w: -0.5975807}
+  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.22653207, w: -0.5975807}
   m_LocalPosition: {x: -223.60544, y: 94.50075, z: -234.58429}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1748,7 +1748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321200460}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14269625, y: 0.7557899, z: -0.2265321, w: -0.5975807}
+  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.22653207, w: -0.5975807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8691,6 +8691,7 @@ GameObject:
   - component: {fileID: 1724558351}
   - component: {fileID: 1724558350}
   - component: {fileID: 1724558349}
+  - component: {fileID: 1724558353}
   m_Layer: 5
   m_Name: win
   m_TagString: Untagged
@@ -8777,10 +8778,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 9e8306830f5474745903c9150de03e54, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 1724558353}
+        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
+        m_MethodName: LoadScene3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8827,6 +8828,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724558347}
   m_CullTransparentMesh: 1
+--- !u!114 &1724558353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724558347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d55dc8e858c445a975670270ae91f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1736301004
 GameObject:
   m_ObjectHideFlags: 0
@@ -10421,7 +10434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965730895}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14269625, y: 0.7557899, z: -0.2265321, w: -0.5975807}
+  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.22653207, w: -0.5975807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

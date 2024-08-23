@@ -19,9 +19,9 @@ public class StartGame : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
-
-    public void LoadScene4()
+    public void restart()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
     }
+
 }
