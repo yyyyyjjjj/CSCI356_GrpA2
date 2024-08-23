@@ -113,7 +113,7 @@ public class AiFight : MonoBehaviour
                     else
                     {
                         //StartCoroutine(ExecuteAfterDelay(2.0f, fireball));
-                        StartCoroutine(ExecuteAfterDelay(2.0f, bossAttack));
+                        StartCoroutine(ExecuteAfterDelay(1.2f, bossAttack));
                         animator.SetBool("isFlying", false);
                         animator.SetTrigger("fireBallShot");
                         monsterEffect.SetActive(false);
