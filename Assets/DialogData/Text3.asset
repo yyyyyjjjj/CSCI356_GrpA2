@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: effd3221cf5394b828a1913c3b1fe059, type: 3}
+  m_Name: Text3
+  m_EditorClassIdentifier: 
+  dialog:
+  - "You\u2019ve arrived at last, hero. Congratulations! Few have made it this far.
+    This is the Isle of Destiny, where your journey ends... or begins anew."
+  - Beyond this point lies the final trial. The air is thick with the presence of
+    the one who has cast this shadow over the islands. The ancient evil awaits you,
+    and only by defeating it can peace be restored.
+  - "The final battle is near. Find the boss that haunts this island, and give it
+    everything you\u2019ve got. Good luck, hero. The fate of the islands rests with
+    you."
