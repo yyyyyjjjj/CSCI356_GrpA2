@@ -24,12 +24,21 @@ public class AiFight : MonoBehaviour
     public GameObject warningSign;
     public GameObject aoePrefab;
 
+    // Audio related variables
+    public AudioClip dragonGrowl;
+    public AudioClip fireBreath;
+    public AudioClip roar;
+    private AudioSource audioSource;
+
     public float fireballSpeed = 20f;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         SC = Sc.GetComponent<SystemControl>();
         animator = monsterObject.GetComponent<Animator>();
+
+        // Initialize the AudioSource component
+        audioSource = monsterObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -57,6 +66,9 @@ public class AiFight : MonoBehaviour
                 if (SC.hasUsedDefense == true)
                 {
                     StartCoroutine(ExecuteAfterDelay(0.5f, fireball));
+                    // Play the fire breath sound
+                    PlaySound(fireBreath);
+
                     // when distance > 12, monster fly and shot fireball(doesn't move)
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
@@ -72,6 +84,9 @@ public class AiFight : MonoBehaviour
                 else
                 {
                     StartCoroutine(ExecuteAfterDelay(0.5f, fireball));
+                    // Play the fire breath sound
+                    PlaySound(fireBreath);
+
                     agent.SetDestination(transform.position); // stop moving
                     animator.SetBool("isMoving", false);
                     animator.SetTrigger("isFire");
@@ -98,10 +113,12 @@ public class AiFight : MonoBehaviour
                     if (SC.roundTims % 4 == 1)
                     {
                         animator.SetTrigger("isAttack");
+                        PlaySound(dragonGrowl);
                     }
                     else if (SC.roundTims % 4 == 2)
                     {
                         animator.SetTrigger("isTailAttack");
+                        PlaySound(dragonGrowl);
                     }
                     else if (SC.roundTims % 4 == 3)
                     {
@@ -110,6 +127,7 @@ public class AiFight : MonoBehaviour
                         monsterEffect.SetActive(true);
                         monster.AiDamage *= 3;
                         warningSign.SetActive(true);
+                        PlaySound(roar);
                     }
                     else
                     {
@@ -119,6 +137,7 @@ public class AiFight : MonoBehaviour
                         animator.SetTrigger("fireBallShot");
                         monsterEffect.SetActive(false);
                         warningSign.SetActive(false);
+                        PlaySound(fireBreath);
                     }
 
 
@@ -175,5 +194,13 @@ public class AiFight : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         method?.Invoke();
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }
