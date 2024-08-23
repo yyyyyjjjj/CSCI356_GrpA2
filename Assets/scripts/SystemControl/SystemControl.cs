@@ -155,6 +155,7 @@ public class SystemControl : MonoBehaviour
             hasUsedFireBall = false;
             hasUsedLightning = false;
             hasHeal = false;
+            healAnimation.SetActive(false);
             hc.times = false;
             roundTims += 1;
             AV.oneTimes = false;
@@ -231,12 +232,14 @@ public class SystemControl : MonoBehaviour
         }
     }
 
+    public GameObject defenseAnimation;
     public void defense()
     {
         if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false & hasHeal == false)
         {
             hasUsedDefense = true;
             animator.SetTrigger("defense");
+            defenseAnimation.SetActive(true);
         }
     }
 
@@ -289,12 +292,13 @@ public class SystemControl : MonoBehaviour
         }
     }
 
-    
+    public GameObject healAnimation;
     public void healing()
     {
         if (hasUsedSkill == false && hasUsedDefense == false && hasUsedFireBall == false && hasUsedLightning == false && hasHeal == false)
         {
-            hasHeal = true;            
+            hasHeal = true;
+            healAnimation.SetActive(true);
         }
     }
 

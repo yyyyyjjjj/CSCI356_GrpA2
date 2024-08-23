@@ -64,6 +64,7 @@ public class AiFight : MonoBehaviour
 
                     player.currentHP -= monster.AiDamage * 3 / 4;
                     SC.hasUsedDefense = false;
+                    SC.defenseAnimation.SetActive(false);
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
 
@@ -135,6 +136,7 @@ public class AiFight : MonoBehaviour
                         monster.AiDamage = 5;  //reset monster damage;
                     }
                     SC.hasUsedDefense = false;
+                    SC.defenseAnimation.SetActive(false);
 
                     // change turn
                     SC.state = BattleState.PLAYERTURN;
