@@ -15,9 +15,9 @@ public class DialogUI : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        dialogBox.SetActive(false);
         typeDialogEffect = GetComponent<TypeDialogEffect>();
         CloseDialogBox();
-        ShowDialog(testDialog);
     }
 
     public void ShowDialog(DialogObjects dialogObjects)
@@ -28,7 +28,7 @@ public class DialogUI : MonoBehaviour, IPointerClickHandler
 
     private IEnumerator StepThroughDialog(DialogObjects dialogObjects)
     {
-        foreach (string dialog in dialogObjects.Dialog)
+        foreach (string dialog in dialogObjects.DialogLines)
         {
             yield return typeDialogEffect.Run(dialog, textLabel);
             yield return new WaitUntil(() => isClicked);

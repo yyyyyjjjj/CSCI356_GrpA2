@@ -7,5 +7,5 @@ public class DialogObjects : ScriptableObject
 {
     [SerializeField] [TextArea] private string[] dialog;
 
-    public string[] Dialog => dialog;
+    public string[] DialogLines => dialog;
 }
