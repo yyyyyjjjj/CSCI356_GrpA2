@@ -1264,7 +1264,6 @@ GameObject:
   - component: {fileID: 3238593410256401841}
   - component: {fileID: 7762943507229076300}
   - component: {fileID: 5575281041549818358}
-  - component: {fileID: 4834676810664817109}
   m_Layer: 0
   m_Name: DogPolyart
   m_TagString: Player
@@ -1394,24 +1393,6 @@ MonoBehaviour:
   percentage: 0
   MovePower: 0
   SC: {fileID: 0}
---- !u!114 &4834676810664817109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066896392038628118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc745fa76d6c664380ad84e1fa2ea9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerDamage: 5
-  maxHP: 30
-  currentHP: 30
-  movePower: 10
-  AiHP: 10
-  AiDamage: 30
 --- !u!1 &2066896392038628120
 GameObject:
   m_ObjectHideFlags: 0
