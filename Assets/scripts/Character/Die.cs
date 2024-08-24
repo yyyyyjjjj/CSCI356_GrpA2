@@ -20,7 +20,10 @@ public class Die : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         PlayerData Player = player.GetComponent<PlayerData>();
 
-        if (Player.currentHP <= 0)
+        GameObject monster = GameObject.FindWithTag("monster1");
+        MonsterData Monster = player.GetComponent<MonsterData>();
+
+        if (Player.currentHP <= 0 && Monster.AiCurrentHp > 0)
         {
             restart.enabled = true;
         }        
