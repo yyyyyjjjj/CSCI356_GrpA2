@@ -86,6 +86,8 @@ public class AiFight2 : MonoBehaviour
                 if (SC.hasUsedDefense == true)
                 {
                     player.currentHP -= monster.AiDamage / 2;
+                    SC.defenseAnimation.SetActive(false);
+                    SC.hasUsedDefense = false;
                 }
                 else
                 {
