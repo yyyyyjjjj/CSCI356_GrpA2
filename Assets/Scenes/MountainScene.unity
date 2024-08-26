@@ -3708,7 +3708,7 @@ MonoBehaviour:
   AiMaxHp: 25
   AiCurrentHp: 25
   animator: {fileID: 648607041}
-  systemControl: {fileID: 0}
+  systemControl: {fileID: 979498100}
   aitest: {fileID: 648607047}
 --- !u!114 &648607047
 MonoBehaviour:
@@ -9216,7 +9216,6 @@ MonoBehaviour:
   playerHP: {fileID: 484965179}
   monsterHP: {fileID: 414003168}
   hasTakeDamage: 0
-  animator: {fileID: 1547035621}
   times: 0
 --- !u!1 &1882121204
 GameObject:
@@ -9713,6 +9712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RESTART: {fileID: 1919380059}
   restart: {fileID: 384676928}
+  Animator: {fileID: 1547035621}
 --- !u!1 &1940479279
 GameObject:
   m_ObjectHideFlags: 0
@@ -10498,7 +10498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.37071788, y: -0.3440457, z: 0.24168268, w: -0.8281246}
+  m_LocalRotation: {x: -0.3707179, y: -0.34404564, z: 0.24168268, w: -0.8281246}
   m_LocalPosition: {x: 0.000053610154, y: 0.000061035156, z: 0.0000134991615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

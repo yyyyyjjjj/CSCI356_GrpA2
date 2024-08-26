@@ -28,7 +28,6 @@ public class MonsterData : MonoBehaviour
     {
         if (AiCurrentHp <= 0)
         {
-            AiCurrentHp = 0;
             Die(); 
         }
     }
@@ -50,6 +49,5 @@ public class MonsterData : MonoBehaviour
             systemControl.state = BattleState.NORMAL;
             systemControl.monsterUi.SetActive(false);
         }
-
     }
 }

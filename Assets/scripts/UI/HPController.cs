@@ -15,9 +15,6 @@ public class HPController : MonoBehaviour
 
     public bool hasTakeDamage = false;
 
-
-    public Animator animator;
-
     public bool times = false;
 
     float HpPercentage;
@@ -56,16 +53,6 @@ public class HPController : MonoBehaviour
             player.currentHP += 10;
             times = true;
         }
-
-        if (player.currentHP <= 0)
-        {
-            animator.SetBool("Death", true);
-
-        }
-        else
-        {
-            animator.SetBool("Death", false);
-        }
     }
     void monster1HpController()
     {
@@ -86,16 +73,5 @@ public class HPController : MonoBehaviour
             monster.takenDamage(player.PlayerDamage);
             hasTakeDamage = true;
         }
-        
-        if (monster.AiCurrentHp <= 0)
-        {
-            animator.SetBool("Death", true);
-
-        }
-        else
-        {
-            animator.SetBool("Death", false);
-        }
-
     }
 }

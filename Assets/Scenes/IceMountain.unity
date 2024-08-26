@@ -9582,7 +9582,6 @@ MonoBehaviour:
   playerHP: {fileID: 484965179}
   monsterHP: {fileID: 414003168}
   hasTakeDamage: 0
-  animator: {fileID: 1547035621}
   times: 0
 --- !u!1 &1882121204
 GameObject:
@@ -10068,6 +10067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RESTART: {fileID: 1919380059}
   restart: {fileID: 384676928}
+  Animator: {fileID: 1547035621}
 --- !u!1 &1940479279
 GameObject:
   m_ObjectHideFlags: 0
@@ -10553,7 +10553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032659758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.22653207, w: -0.5975807}
+  m_LocalRotation: {x: -0.14269623, y: 0.75578994, z: -0.2265321, w: -0.5975807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

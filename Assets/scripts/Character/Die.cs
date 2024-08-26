@@ -9,6 +9,8 @@ public class Die : MonoBehaviour
     public Button RESTART;
     public Canvas restart;
 
+    public Animator Animator;
+
     private void Start()
     {
         RESTART.onClick.AddListener(OnbuttonClick);
@@ -21,11 +23,12 @@ public class Die : MonoBehaviour
         PlayerData Player = player.GetComponent<PlayerData>();
 
         GameObject monster = GameObject.FindWithTag("monster1");
-        MonsterData Monster = player.GetComponent<MonsterData>();
+        MonsterData Monster = monster.GetComponent<MonsterData>();
 
         if (Player.currentHP <= 0 && Monster.AiCurrentHp > 0)
         {
             restart.enabled = true;
+            Animator.SetBool("Death", true);
         }        
     }
 
