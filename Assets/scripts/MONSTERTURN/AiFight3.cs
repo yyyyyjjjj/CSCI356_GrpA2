@@ -61,12 +61,12 @@ public class AiFight3 : MonoBehaviour
                 agent.SetDestination(transform.position);
 
                 // choose attack way
-                if (SC.roundTims % 3 == 1)
+                if (SC.roundTims % 2 == 1)
                 {
                     animator.SetTrigger("isAttack1");
                     PlaySound(attackSound1);
                 }
-                else if (SC.roundTims % 3 == 2)
+                else if (SC.roundTims % 2 == 0)
                 {
                     animator.SetTrigger("isAttack2");
                     PlaySound(attackSound2);
